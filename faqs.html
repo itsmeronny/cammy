@@ -1,27 +1,725 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cleaning FAQs | CamCleans</title>
-<meta name="description" content="Frequently asked questions about CamCleans nationwide cleaning services.">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQs | CamCleans</title>
+  <meta name="description" content="Frequently asked questions about CamCleans. Clear answers plus a fast help form." />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    :root{
+      --panel: rgba(255,255,255,0.06);
+      --panel2: rgba(255,255,255,0.04);
+      --stroke: rgba(255,255,255,0.12);
+      --muted: rgba(230,240,255,0.75);
+      --muted2: rgba(230,240,255,0.6);
+      --good: rgba(64,255,170,0.18);
+      --warn: rgba(255,200,80,0.18);
+      --bad: rgba(255,80,110,0.18);
+      --shadow: 0 24px 80px rgba(0,0,0,0.55);
+      --radius: 18px;
+    }
+
+    body{
+      min-height: 100vh;
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(60,120,255,0.22), transparent 55%),
+        radial-gradient(900px 700px at 82% 26%, rgba(120,70,255,0.18), transparent 55%),
+        radial-gradient(1100px 700px at 50% 92%, rgba(40,220,255,0.12), transparent 55%),
+        #0b0f19;
+    }
+
+    .page{ padding: 86px 0 64px; }
+    .wrap{ width: 92%; max-width: 1120px; margin: 0 auto; }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 0 18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      text-decoration:none;
+      color: inherit;
+    }
+
+    .mark{
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background:
+        radial-gradient(20px 20px at 30% 30%, rgba(255,255,255,0.35), transparent 60%),
+        linear-gradient(135deg, rgba(60,120,255,0.85), rgba(120,70,255,0.75));
+      box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .brand strong{ font-weight: 800; letter-spacing: 0.2px; }
+
+    .mini-links{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+    .mini-links a{
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration:none;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+    }
+    .mini-links a:hover{ border-color: rgba(255,255,255,0.18); color: rgba(230,240,255,0.92); }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 18px;
+      align-items:start;
+      margin-top: 10px;
+    }
+    @media (max-width: 900px){ .grid2{ grid-template-columns: 1fr; } }
+
+    .panel{
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: linear-gradient(180deg, var(--panel), var(--panel2));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .panel-header{
+      padding: 22px 22px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(700px 220px at 20% 0%, rgba(60,120,255,0.22), transparent 55%),
+        radial-gradient(600px 220px at 80% 0%, rgba(120,70,255,0.16), transparent 55%);
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: rgba(230,240,255,0.92);
+      font-size: 13px;
+      letter-spacing: 0.2px;
+      margin-bottom: 12px;
+    }
+    .badge .dot{
+      width: 8px; height: 8px; border-radius: 999px;
+      background: rgba(120,70,255,0.95);
+      box-shadow: 0 0 18px rgba(120,70,255,0.35);
+    }
+
+    h1{
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.12;
+      margin: 0 0 10px;
+      letter-spacing: -0.4px;
+    }
+
+    .lead{ color: var(--muted); margin: 0; max-width: 64ch; }
+
+    .panel-body{ padding: 18px 22px 22px; }
+
+    .chips{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 14px; }
+    .chip{
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: rgba(230,240,255,0.88);
+      font-size: 13px;
+    }
+
+    /* FAQ accordion */
+    .accordion{ display:grid; gap: 10px; margin-top: 4px; }
+    details{
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      overflow:hidden;
+    }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding: 14px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      color: rgba(230,240,255,0.95);
+      font-weight: 700;
+      letter-spacing: -0.1px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .chev{
+      width: 30px; height: 30px;
+      border-radius: 10px;
+      display:flex; align-items:center; justify-content:center;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: rgba(230,240,255,0.9);
+      flex: 0 0 auto;
+      transition: transform .15s ease;
+    }
+    details[open] .chev{ transform: rotate(180deg); }
+    .answer{
+      padding: 0 14px 14px;
+      color: rgba(230,240,255,0.78);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .answer ul{ margin: 10px 0 0; padding-left: 18px; }
+    .answer li{ margin: 4px 0; }
+
+    /* Help form */
+    form{ margin-top: 4px; }
+    .formgrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 720px){ .formgrid{ grid-template-columns: 1fr; } }
+
+    .field{ display:flex; flex-direction:column; gap: 7px; }
+    label{ font-size: 13px; color: rgba(230,240,255,0.88); letter-spacing: 0.1px; }
+    .hint{ font-size: 12px; color: var(--muted2); margin-top: -4px; }
+
+    input, select, textarea{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(10,14,25,0.55);
+      color: rgba(230,240,255,0.95);
+      outline: none;
+      transition: border-color .15s ease, box-shadow .15s ease, transform .05s ease;
+      font: inherit;
+    }
+    input::placeholder, textarea::placeholder{ color: rgba(230,240,255,0.45); }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(140,170,255,0.55);
+      box-shadow: 0 0 0 4px rgba(80,130,255,0.14);
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+    .full{ grid-column: 1 / -1; }
+
+    .checks{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+    }
+    @media (max-width: 720px){ .checks{ grid-template-columns: 1fr; } }
+    .check{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      color: rgba(230,240,255,0.86);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .check input{ width:auto; margin-top: 2px; }
+
+    .actions{
+      display:flex;
+      gap: 12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top: 14px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: rgba(230,240,255,0.95);
+      text-decoration:none;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{ border-color: rgba(255,255,255,0.20); }
+    .btn:active{ transform: translateY(1px); }
+    .btn-primary2{
+      border: 1px solid rgba(160,190,255,0.22);
+      background:
+        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,0.25), transparent 60%),
+        linear-gradient(135deg, rgba(60,120,255,0.92), rgba(120,70,255,0.85));
+      box-shadow: 0 14px 42px rgba(0,0,0,0.45);
+    }
+
+    .status{
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: rgba(230,240,255,0.92);
+      display:none;
+    }
+    .status.show{ display:block; }
+    .status.good{ border-color: rgba(64,255,170,0.24); background: var(--good); }
+    .status.warn{ border-color: rgba(255,200,80,0.22); background: var(--warn); }
+    .status.bad{ border-color: rgba(255,80,110,0.22); background: var(--bad); }
+
+    /* Right side */
+    .side{ padding: 20px 20px 16px; }
+    .side h2{ font-size: 18px; margin: 0 0 10px; letter-spacing: -0.2px; }
+    .side p{ margin: 0 0 12px; color: var(--muted); font-size: 14px; line-height: 1.55; }
+
+    .cards{ display:grid; gap: 10px; margin-top: 14px; }
+    .card{
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+    }
+    .card strong{ display:block; margin-bottom: 4px; font-size: 14px; }
+    .card span{ display:block; color: var(--muted2); font-size: 12.5px; line-height: 1.45; }
+
+    .divider{ height: 1px; background: rgba(255,255,255,0.08); margin: 16px 0; }
+
+    .small-links a{
+      color: rgba(230,240,255,0.86);
+      text-decoration:none;
+      border-bottom: 1px dashed rgba(230,240,255,0.30);
+    }
+    .small-links a:hover{ border-bottom-color: rgba(230,240,255,0.55); }
+
+    .footer-mini{
+      margin-top: 22px;
+      color: rgba(230,240,255,0.55);
+      font-size: 12px;
+      text-align:center;
+    }
+  </style>
 </head>
+
 <body>
+  <main class="page">
+    <div class="wrap">
 
-<section class="services">
-  <div class="container">
-    <h1>Frequently Asked Questions</h1>
-    <h3>Are your cleaners insured?</h3>
-    <p>Yes, all professionals are fully insured.</p>
+      <div class="topbar">
+        <a class="brand" href="/">
+          <div class="mark" aria-hidden="true"></div>
+          <div>
+            <strong>CamCleans</strong><br />
+            <span style="font-size:12px; color: rgba(230,240,255,0.6);">FAQs & Support</span>
+          </div>
+        </a>
 
-    <h3>Do you operate nationwide?</h3>
-    <p>Yes, we operate across major UK cities.</p>
+        <div class="mini-links" aria-label="Quick links">
+          <a href="/services/regular-cleaning.html">Services</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/join-cleaner.html">Join as a Cleaner</a>
+        </div>
+      </div>
 
-    <h3>Do I need to provide products?</h3>
-    <p>No. Cleaners bring their own equipment unless otherwise agreed.</p>
-  </div>
-</section>
+      <div class="grid2">
 
+        <!-- LEFT: FAQs -->
+        <section class="panel" aria-labelledby="faq-title">
+          <div class="panel-header">
+            <div class="badge"><span class="dot" aria-hidden="true"></span> Quick answers — real expectations</div>
+            <h1 id="faq-title">Frequently Asked Questions</h1>
+            <p class="lead">
+              Most issues are simple. Read this first. If you still need help, use the support form below and be specific.
+            </p>
+
+            <div class="chips" aria-hidden="true">
+              <span class="chip">Pricing clarity</span>
+              <span class="chip">Defined scopes</span>
+              <span class="chip">Nationwide UK</span>
+              <span class="chip">Quality-led</span>
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <div class="accordion">
+
+              <details open>
+                <summary>
+                  Are your cleaners insured?
+                  <span class="chev" aria-hidden="true">▾</span>
+                </summary>
+                <div class="answer">
+                  Yes. Cleaners are required to have (or be able to obtain) public liability insurance appropriate to the work.
+                </div>
+              </details>
+
+              <details>
+                <summary>
+                  Do you operate nationwide?
+                  <span class="chev" aria-hidden="true">▾</span>
+                </summary>
+                <div class="answer">
+                  Yes. We cover major UK cities and surrounding areas. Availability depends on demand and cleaner supply in your postcode.
+                </div>
+              </details>
+
+              <details>
+                <summary>
+                  Do I need to provide cleaning products?
+                  <span class="chev" aria-hidden="true">▾</span>
+                </summary>
+                <div class="answer">
+                  Usually no. Most cleaners bring their own products and equipment. If you have preferences (eco-only, fragrance-free, etc.), tell us upfront.
+                </div>
+              </details>
+
+              <details>
+                <summary>
+                  What’s the difference between a deep clean and end of tenancy?
+                  <span class="chev" aria-hidden="true">▾</span>
+                </summary>
+                <div class="answer">
+                  <ul>
+                    <li><strong>Deep clean</strong>: a thorough one-off reset (good for lived-in homes).</li>
+                    <li><strong>End of tenancy</strong>: a checklist-driven clean aimed at move-out standard (often includes inside cupboards, skirting, detailed kitchen/bathroom).</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details>
+                <summary>
+                  Do you clean ovens, fridges, and inside cupboards?
+                  <span class="chev" aria-hidden="true">▾</span>
+                </summary>
+                <div class="answer">
+                  It depends on the service and what you select. For end of tenancy, these are commonly included or available as add-ons.
+                  If you want specific internals cleaned, state it clearly.
+                </div>
+              </details>
+
+              <details>
+                <summary>
+                  Can I book a same-day or next-day clean?
+                  <span class="chev" aria-hidden="true">▾</span>
+                </summary>
+                <div class="answer">
+                  Sometimes. It depends on your postcode and cleaner availability. If it’s urgent, submit a request with your postcode and the service type.
+                </div>
+              </details>
+
+              <details>
+                <summary>
+                  How do you price jobs?
+                  <span class="chev" aria-hidden="true">▾</span>
+                </summary>
+                <div class="answer">
+                  Pricing is based on service type + property size + condition + access/time constraints.
+                  The fastest way to get a firm price is to provide: postcode, bedrooms, bathrooms, and any heavy soiling/problem areas.
+                </div>
+              </details>
+
+              <details>
+                <summary>
+                  What if I’m not happy with the result?
+                  <span class="chev" aria-hidden="true">▾</span>
+                </summary>
+                <div class="answer">
+                  Raise it immediately with specifics (photos help). If something was missed within the agreed scope, we’ll arrange a remedy where reasonable.
+                </div>
+              </details>
+
+              <details>
+                <summary>
+                  Can I leave keys / use key safe access?
+                  <span class="chev" aria-hidden="true">▾</span>
+                </summary>
+                <div class="answer">
+                  Yes. Key safes, concierge/porter access, or arranged key handovers are common. Provide instructions clearly in the request.
+                </div>
+              </details>
+
+              <details>
+                <summary>
+                  Do you do commercial and office cleaning?
+                  <span class="chev" aria-hidden="true">▾</span>
+                </summary>
+                <div class="answer">
+                  Yes. Provide premises type, size (sq ft if known), frequency required, and any out-of-hours constraints.
+                </div>
+              </details>
+
+            </div>
+
+            <div class="divider"></div>
+
+            <h2 style="margin:0 0 10px; font-size:18px;">Still need help? Send a support request</h2>
+            <p style="margin:0 0 14px; color: rgba(230,240,255,0.75); font-size:14px;">
+              Don’t waste time with vague messages. If your input is weak, your response will be slow.
+            </p>
+
+            <form id="faqHelpForm" novalidate>
+              <div class="formgrid">
+
+                <div class="field">
+                  <label for="name">Full name *</label>
+                  <input id="name" name="name" type="text" autocomplete="name" placeholder="e.g. Sam Carter" required />
+                </div>
+
+                <div class="field">
+                  <label for="email">Email *</label>
+                  <input id="email" name="email" type="email" autocomplete="email" placeholder="e.g. sam@email.com" required />
+                </div>
+
+                <div class="field">
+                  <label for="topic">Topic *</label>
+                  <select id="topic" name="topic" required>
+                    <option value="" selected disabled>Select…</option>
+                    <option value="Quote question">Quote question</option>
+                    <option value="Booking change">Booking change</option>
+                    <option value="Complaint / quality issue">Complaint / quality issue</option>
+                    <option value="Invoice / payment">Invoice / payment</option>
+                    <option value="General question">General question</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="postcode">Postcode (recommended)</label>
+                  <input id="postcode" name="postcode" type="text" autocomplete="postal-code" placeholder="e.g. PO19 7TG" />
+                  <div class="hint">If it’s about a job, this matters.</div>
+                </div>
+
+                <div class="field full">
+                  <label>Optional context</label>
+                  <div class="checks" role="group" aria-label="Context">
+                    <label class="check"><input type="checkbox" id="isUrgent" /> Urgent (next 72 hours)</label>
+                    <label class="check"><input type="checkbox" id="hasPhotos" /> I can provide photos</label>
+                    <label class="check"><input type="checkbox" id="isExistingBooking" /> This is about an existing booking</label>
+                    <label class="check"><input type="checkbox" id="needsCallBack" /> I want a call-back</label>
+                  </div>
+                </div>
+
+                <div class="field full">
+                  <label for="message">Message *</label>
+                  <textarea id="message" name="message" placeholder="State the problem clearly. Include dates, service type, and exactly what you want done." required></textarea>
+                </div>
+
+                <div class="field full">
+                  <label class="check">
+                    <input type="checkbox" id="consent" required />
+                    I consent to being contacted about this request. *
+                  </label>
+                  <div class="hint">This page uses a “send by email” fallback until final delivery wiring is set.</div>
+                </div>
+
+              </div>
+
+              <div class="actions">
+                <button type="submit" class="btn btn-primary2">Send Support Request</button>
+                <button type="button" class="btn" id="saveBtn">Save Draft</button>
+                <button type="button" class="btn" id="clearBtn">Clear</button>
+              </div>
+
+              <div class="status" id="statusBox" role="status" aria-live="polite"></div>
+            </form>
+
+          </div>
+        </section>
+
+        <!-- RIGHT: Quick routing -->
+        <aside class="panel">
+          <div class="side">
+            <h2>Fastest routes</h2>
+            <p>If you want speed, use the correct channel. Misrouted messages get delayed.</p>
+
+            <div class="cards">
+              <div class="card">
+                <strong>Get a quote</strong>
+                <span>Use the quote/contact form for structured details. <span class="small-links"><a href="/contact.html">Go to Contact</a></span>.</span>
+              </div>
+              <div class="card">
+                <strong>Join as a cleaner</strong>
+                <span>Apply with coverage + services. <span class="small-links"><a href="/join-cleaner.html">Go to Join</a></span>.</span>
+              </div>
+              <div class="card">
+                <strong>Pricing</strong>
+                <span>See baseline pricing info. <span class="small-links"><a href="/pricing.html">View Pricing</a></span>.</span>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <h2>Direct email</h2>
+            <p class="small-links" style="margin:0;">
+              <a href="mailto:hello@camcleans.co.uk?subject=CamCleans%20Support%20Request">hello@camcleans.co.uk</a>
+            </p>
+
+            <p style="margin-top:10px; color: rgba(230,240,255,0.6); font-size: 12.5px;">
+              If it’s a complaint: include date, postcode, service type, and what was missed — not feelings.
+            </p>
+          </div>
+        </aside>
+
+      </div>
+
+      <div class="footer-mini">© 2026 CamCleans Services Ltd. All rights reserved.</div>
+
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      const form = document.getElementById("faqHelpForm");
+      const statusBox = document.getElementById("statusBox");
+      const saveBtn = document.getElementById("saveBtn");
+      const clearBtn = document.getElementById("clearBtn");
+
+      // Change later to final receiving address
+      const DEST_EMAIL = "hello@camcleans.co.uk";
+      const STORAGE_KEY = "camcleans_faq_help_draft_v1";
+
+      function showStatus(type, msg) {
+        statusBox.className = "status show " + type;
+        statusBox.textContent = msg;
+      }
+      function hideStatus() {
+        statusBox.className = "status";
+        statusBox.textContent = "";
+      }
+
+      function looksLikePostcode(s) {
+        const v = (s || "").trim().toUpperCase();
+        if (!v) return true; // postcode optional on this page
+        return /^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/.test(v);
+      }
+
+      function serialize() {
+        return {
+          name: form.name.value.trim(),
+          email: form.email.value.trim(),
+          topic: form.topic.value,
+          postcode: form.postcode.value.trim(),
+          isUrgent: document.getElementById("isUrgent").checked,
+          hasPhotos: document.getElementById("hasPhotos").checked,
+          isExistingBooking: document.getElementById("isExistingBooking").checked,
+          needsCallBack: document.getElementById("needsCallBack").checked,
+          message: form.message.value.trim(),
+          consent: document.getElementById("consent").checked,
+          submittedAt: new Date().toISOString()
+        };
+      }
+
+      function buildEmailBody(d) {
+        const lines = [
+          "SUPPORT REQUEST (CamCleans)",
+          "---------------------------",
+          "Name: " + d.name,
+          "Email: " + d.email,
+          "Topic: " + d.topic,
+          "Postcode: " + (d.postcode || "—"),
+          "",
+          "Context:",
+          "- Urgent (72h): " + (d.isUrgent ? "Yes" : "No"),
+          "- Photos available: " + (d.hasPhotos ? "Yes" : "No"),
+          "- Existing booking: " + (d.isExistingBooking ? "Yes" : "No"),
+          "- Wants call-back: " + (d.needsCallBack ? "Yes" : "No"),
+          "",
+          "Message:",
+          d.message || "—",
+          "",
+          "Submitted: " + d.submittedAt
+        ];
+        return lines.join("\n");
+      }
+
+      function loadDraft() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return;
+          const d = JSON.parse(raw);
+
+          form.name.value = d.name || "";
+          form.email.value = d.email || "";
+          if (d.topic) form.topic.value = d.topic;
+          form.postcode.value = d.postcode || "";
+
+          document.getElementById("isUrgent").checked = !!d.isUrgent;
+          document.getElementById("hasPhotos").checked = !!d.hasPhotos;
+          document.getElementById("isExistingBooking").checked = !!d.isExistingBooking;
+          document.getElementById("needsCallBack").checked = !!d.needsCallBack;
+
+          form.message.value = d.message || "";
+          document.getElementById("consent").checked = !!d.consent;
+
+          showStatus("warn", "Draft loaded from this device.");
+        } catch (e) {}
+      }
+
+      function saveDraft() {
+        try {
+          const data = serialize();
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+          showStatus("warn", "Draft saved on this device.");
+        } catch (e) {
+          showStatus("bad", "Could not save draft.");
+        }
+      }
+
+      function clearAll() {
+        form.reset();
+        localStorage.removeItem(STORAGE_KEY);
+        hideStatus();
+        showStatus("warn", "Cleared.");
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        hideStatus();
+
+        if (!form.checkValidity()) {
+          showStatus("bad", "Fix the highlighted fields and try again.");
+          form.reportValidity();
+          return;
+        }
+
+        const pc = form.postcode.value.trim();
+        if (!looksLikePostcode(pc)) {
+          showStatus("bad", "Postcode looks wrong. Example format: PO19 7TG.");
+          return;
+        }
+
+        const data = serialize();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+        const subject = encodeURIComponent("CamCleans Support - " + data.topic + (data.postcode ? " (" + data.postcode.toUpperCase() + ")" : ""));
+        const body = encodeURIComponent(buildEmailBody(data));
+        const mailto = "mailto:" + encodeURIComponent(DEST_EMAIL) + "?subject=" + subject + "&body=" + body;
+
+        showStatus("good", "Support request prepared. Your email client will open to send it now.");
+
+        setTimeout(() => {
+          window.location.href = mailto;
+        }, 350);
+      });
+
+      saveBtn.addEventListener("click", saveDraft);
+      clearBtn.addEventListener("click", clearAll);
+      loadDraft();
+    })();
+  </script>
 </body>
 </html>

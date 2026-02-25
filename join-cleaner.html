@@ -1,21 +1,831 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Join as a Cleaner | CamCleans</title>
-<meta name="description" content="Apply to join CamCleans as a professional cleaner operating nationwide.">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join as a Cleaner | CamCleans</title>
+  <meta name="description" content="Apply to join CamCleans as a professional cleaner. Fast onboarding, clear expectations, consistent jobs." />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    :root{
+      --panel: rgba(255,255,255,0.06);
+      --panel2: rgba(255,255,255,0.04);
+      --stroke: rgba(255,255,255,0.12);
+      --stroke2: rgba(255,255,255,0.18);
+      --muted: rgba(230,240,255,0.75);
+      --muted2: rgba(230,240,255,0.6);
+      --good: rgba(64,255,170,0.18);
+      --warn: rgba(255,200,80,0.18);
+      --bad: rgba(255,80,110,0.18);
+      --shadow: 0 24px 80px rgba(0,0,0,0.55);
+      --radius: 18px;
+    }
+
+    body{
+      min-height: 100vh;
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(60, 120, 255, 0.22), transparent 55%),
+        radial-gradient(900px 700px at 80% 30%, rgba(120, 70, 255, 0.18), transparent 55%),
+        radial-gradient(1000px 700px at 50% 90%, rgba(40, 220, 255, 0.12), transparent 55%),
+        #0b0f19;
+    }
+
+    /* Page shell */
+    .page {
+      padding: 86px 0 64px;
+    }
+
+    .wrap {
+      width: 92%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 0 18px;
+    }
+
+    .brand {
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      text-decoration:none;
+      color: inherit;
+    }
+
+    .mark{
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background:
+        radial-gradient(20px 20px at 30% 30%, rgba(255,255,255,0.35), transparent 60%),
+        linear-gradient(135deg, rgba(60,120,255,0.85), rgba(120,70,255,0.75));
+      box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .brand strong{
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    .mini-links{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+    .mini-links a{
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration:none;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+    }
+    .mini-links a:hover{ border-color: rgba(255,255,255,0.18); color: rgba(230,240,255,0.92); }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 18px;
+      align-items: start;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 900px){
+      .hero-grid{ grid-template-columns: 1fr; }
+    }
+
+    .panel{
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: linear-gradient(180deg, var(--panel), var(--panel2));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .panel-header{
+      padding: 22px 22px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(700px 220px at 20% 0%, rgba(60,120,255,0.22), transparent 55%),
+        radial-gradient(600px 220px at 80% 0%, rgba(120,70,255,0.16), transparent 55%);
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: rgba(230,240,255,0.92);
+      font-size: 13px;
+      letter-spacing: 0.2px;
+      margin-bottom: 12px;
+    }
+
+    .badge .dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(64,255,170,0.95);
+      box-shadow: 0 0 18px rgba(64,255,170,0.35);
+    }
+
+    h1{
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.12;
+      margin: 0 0 10px;
+      letter-spacing: -0.4px;
+    }
+
+    .lead{
+      color: var(--muted);
+      margin: 0;
+      max-width: 58ch;
+    }
+
+    .panel-body{
+      padding: 18px 22px 22px;
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .pill{
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: rgba(230,240,255,0.88);
+      font-size: 13px;
+    }
+
+    /* Form */
+    form{ margin-top: 4px; }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 720px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .field{
+      display:flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    label{
+      font-size: 13px;
+      color: rgba(230,240,255,0.88);
+      letter-spacing: 0.1px;
+    }
+
+    .hint{
+      font-size: 12px;
+      color: var(--muted2);
+      margin-top: -4px;
+    }
+
+    input, select, textarea{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(10,14,25,0.55);
+      color: rgba(230,240,255,0.95);
+      outline: none;
+      transition: border-color .15s ease, box-shadow .15s ease, transform .05s ease;
+      font: inherit;
+    }
+
+    input::placeholder, textarea::placeholder{ color: rgba(230,240,255,0.45); }
+
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(140,170,255,0.55);
+      box-shadow: 0 0 0 4px rgba(80,130,255,0.14);
+    }
+
+    textarea{
+      min-height: 108px;
+      resize: vertical;
+    }
+
+    .full{ grid-column: 1 / -1; }
+
+    .checks{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+    }
+    @media (max-width: 720px){
+      .checks{ grid-template-columns: 1fr; }
+    }
+
+    .check{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      color: rgba(230,240,255,0.86);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .check input{ width:auto; margin-top: 2px; }
+
+    .actions{
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items:center;
+      margin-top: 14px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: rgba(230,240,255,0.95);
+      text-decoration:none;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{ border-color: rgba(255,255,255,0.20); }
+    .btn:active{ transform: translateY(1px); }
+
+    .btn-primary2{
+      border: 1px solid rgba(160,190,255,0.22);
+      background:
+        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,0.25), transparent 60%),
+        linear-gradient(135deg, rgba(60,120,255,0.92), rgba(120,70,255,0.85));
+      box-shadow: 0 14px 42px rgba(0,0,0,0.45);
+    }
+
+    .fineprint{
+      color: var(--muted2);
+      font-size: 12px;
+      margin: 8px 0 0;
+    }
+
+    /* Status */
+    .status{
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: rgba(230,240,255,0.92);
+      display:none;
+    }
+    .status.show{ display:block; }
+    .status.good{ border-color: rgba(64,255,170,0.24); background: var(--good); }
+    .status.warn{ border-color: rgba(255,200,80,0.22); background: var(--warn); }
+    .status.bad{ border-color: rgba(255,80,110,0.22); background: var(--bad); }
+
+    /* Right panel */
+    .side{
+      padding: 20px 20px 16px;
+    }
+    .side h2{
+      font-size: 18px;
+      margin: 0 0 10px;
+      letter-spacing: -0.2px;
+    }
+    .side p{
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .steps{
+      display:grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .step{
+      display:flex;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+    }
+    .num{
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: rgba(230,240,255,0.95);
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+    .step strong{
+      display:block;
+      margin-bottom: 2px;
+      font-size: 14px;
+    }
+    .step span{
+      display:block;
+      color: var(--muted2);
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
+
+    .divider{
+      height:1px;
+      background: rgba(255,255,255,0.08);
+      margin: 16px 0;
+    }
+
+    .small-links a{
+      color: rgba(230,240,255,0.86);
+      text-decoration:none;
+      border-bottom: 1px dashed rgba(230,240,255,0.30);
+    }
+    .small-links a:hover{ border-bottom-color: rgba(230,240,255,0.55); }
+
+    .footer-mini{
+      margin-top: 22px;
+      color: rgba(230,240,255,0.55);
+      font-size: 12px;
+      text-align:center;
+    }
+  </style>
 </head>
+
 <body>
+  <main class="page">
+    <div class="wrap">
 
-<section class="services">
-  <div class="container">
-    <h1>Join CamCleans</h1>
-    <p>We are expanding nationwide and looking for reliable, experienced cleaning professionals.</p>
-    <p>Email hello@camcleans.co.uk with your details and coverage area.</p>
-  </div>
-</section>
+      <div class="topbar">
+        <a class="brand" href="/">
+          <div class="mark" aria-hidden="true"></div>
+          <div>
+            <strong>CamCleans</strong><br />
+            <span style="font-size:12px; color: rgba(230,240,255,0.6);">Cleaner Application</span>
+          </div>
+        </a>
 
+        <div class="mini-links" aria-label="Quick links">
+          <a href="/services/regular-cleaning.html">Services</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/faqs.html">FAQs</a>
+          <a href="/contact.html">Contact</a>
+        </div>
+      </div>
+
+      <div class="hero-grid">
+
+        <!-- LEFT: Form -->
+        <section class="panel" aria-labelledby="join-title">
+          <div class="panel-header">
+            <div class="badge"><span class="dot" aria-hidden="true"></span> Applications open — UK Nationwide</div>
+            <h1 id="join-title">Join CamCleans as a Cleaner</h1>
+            <p class="lead">
+              Fill this in properly. If you’re a good operator, you’ll get jobs. If you’re unreliable, you won’t.
+              Simple.
+            </p>
+
+            <div class="pill-row" aria-hidden="true">
+              <span class="pill">Fast onboarding</span>
+              <span class="pill">Clear scopes</span>
+              <span class="pill">Quality-driven</span>
+              <span class="pill">Nationwide coverage</span>
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <!-- NOTE: No backend yet. This captures clean data and (for now) uses a mailto fallback. -->
+            <form id="joinForm" novalidate>
+              <div class="grid">
+
+                <div class="field">
+                  <label for="fullName">Full name *</label>
+                  <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="e.g. Jamie Taylor" required />
+                </div>
+
+                <div class="field">
+                  <label for="phone">Mobile number *</label>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="e.g. 07xxx xxx xxx" required />
+                  <div class="hint">Used for job confirmations.</div>
+                </div>
+
+                <div class="field">
+                  <label for="email">Email *</label>
+                  <input id="email" name="email" type="email" autocomplete="email" placeholder="e.g. jamie@email.com" required />
+                </div>
+
+                <div class="field">
+                  <label for="postcode">Home postcode *</label>
+                  <input id="postcode" name="postcode" type="text" autocomplete="postal-code" placeholder="e.g. PO19 7TG" required />
+                  <div class="hint">Used to calculate local coverage.</div>
+                </div>
+
+                <div class="field">
+                  <label for="coverageMiles">Coverage radius *</label>
+                  <select id="coverageMiles" name="coverageMiles" required>
+                    <option value="" selected disabled>Select…</option>
+                    <option value="5">Up to 5 miles</option>
+                    <option value="10">Up to 10 miles</option>
+                    <option value="15">Up to 15 miles</option>
+                    <option value="20">Up to 20 miles</option>
+                    <option value="30">Up to 30 miles</option>
+                    <option value="50">Up to 50 miles</option>
+                    <option value="Nationwide">Nationwide / Travel OK</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="status">Work status *</label>
+                  <select id="status" name="status" required>
+                    <option value="" selected disabled>Select…</option>
+                    <option value="Self-employed">Self-employed</option>
+                    <option value="Limited company">Limited company</option>
+                    <option value="Employed seeking extra">Employed (seeking extra)</option>
+                    <option value="Newly starting">Newly starting</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="experience">Cleaning experience *</label>
+                  <select id="experience" name="experience" required>
+                    <option value="" selected disabled>Select…</option>
+                    <option value="0-6 months">0–6 months</option>
+                    <option value="6-12 months">6–12 months</option>
+                    <option value="1-2 years">1–2 years</option>
+                    <option value="2-5 years">2–5 years</option>
+                    <option value="5+ years">5+ years</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="availability">Availability *</label>
+                  <select id="availability" name="availability" required>
+                    <option value="" selected disabled>Select…</option>
+                    <option value="Weekdays">Weekdays</option>
+                    <option value="Weekends">Weekends</option>
+                    <option value="Evenings">Evenings</option>
+                    <option value="Flexible">Flexible</option>
+                  </select>
+                </div>
+
+                <div class="field full">
+                  <label>Services you can do *</label>
+                  <div class="checks" role="group" aria-label="Services">
+                    <label class="check"><input type="checkbox" name="services" value="Regular domestic" required /> Regular domestic (weekly/fortnightly)</label>
+                    <label class="check"><input type="checkbox" name="services" value="Deep clean" /> One-off deep cleans</label>
+                    <label class="check"><input type="checkbox" name="services" value="End of tenancy" /> End of tenancy</label>
+                    <label class="check"><input type="checkbox" name="services" value="After builders" /> After builders</label>
+                    <label class="check"><input type="checkbox" name="services" value="Office" /> Office / commercial</label>
+                    <label class="check"><input type="checkbox" name="services" value="Carpet" /> Carpet (machine/extraction)</label>
+                  </div>
+                  <div class="hint">Tick at least one. Don’t overclaim — you’ll get tested on quality.</div>
+                </div>
+
+                <div class="field full">
+                  <label>Compliance *</label>
+                  <div class="checks" role="group" aria-label="Compliance checks">
+                    <label class="check"><input type="checkbox" id="dbs" name="dbs" /> DBS (have / can obtain)</label>
+                    <label class="check"><input type="checkbox" id="insured" name="insured" /> Public liability insurance (have / can obtain)</label>
+                    <label class="check"><input type="checkbox" id="idRightToWork" name="idRightToWork" required /> Right to work in the UK *</label>
+                    <label class="check"><input type="checkbox" id="agreeQuality" name="agreeQuality" required /> I agree to quality checks and clear standards *</label>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="transport">Transport *</label>
+                  <select id="transport" name="transport" required>
+                    <option value="" selected disabled>Select…</option>
+                    <option value="Car">Car</option>
+                    <option value="Van">Van</option>
+                    <option value="Public transport">Public transport</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="equipment">Equipment *</label>
+                  <select id="equipment" name="equipment" required>
+                    <option value="" selected disabled>Select…</option>
+                    <option value="I bring my own">I bring my own</option>
+                    <option value="Some - depends on job">Some (depends on job)</option>
+                    <option value="Need client supplies">Need client supplies</option>
+                  </select>
+                </div>
+
+                <div class="field full">
+                  <label for="notes">Short summary *</label>
+                  <textarea id="notes" name="notes" placeholder="Tell us what you’re best at, your typical jobs, and any specialist experience (e.g. Airbnb turnovers, ovens, mould, carpets, high-end homes)." required></textarea>
+                </div>
+
+                <div class="field full">
+                  <label class="check">
+                    <input type="checkbox" id="consent" required />
+                    I confirm the information is accurate and I consent to being contacted about work opportunities. *
+                  </label>
+                  <p class="fineprint">
+                    No spam. This form currently uses a “send by email” fallback until the final delivery method is wired in.
+                  </p>
+                </div>
+              </div>
+
+              <div class="actions">
+                <button type="submit" class="btn btn-primary2" id="submitBtn">Submit Application</button>
+                <button type="button" class="btn" id="saveBtn">Save Draft</button>
+                <button type="button" class="btn" id="clearBtn">Clear</button>
+              </div>
+
+              <div class="status" id="statusBox" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </section>
+
+        <!-- RIGHT: What happens next -->
+        <aside class="panel">
+          <div class="side">
+            <h2>What happens next</h2>
+            <p>
+              This is a quality-first network. If you can deliver consistently, you’ll get consistent work.
+              If you cut corners, you’ll be removed.
+            </p>
+
+            <div class="steps">
+              <div class="step">
+                <div class="num">1</div>
+                <div>
+                  <strong>Review</strong>
+                  <span>We check your coverage, services, and experience.</span>
+                </div>
+              </div>
+              <div class="step">
+                <div class="num">2</div>
+                <div>
+                  <strong>Verification</strong>
+                  <span>Right to work + optional DBS/insurance checks where needed.</span>
+                </div>
+              </div>
+              <div class="step">
+                <div class="num">3</div>
+                <div>
+                  <strong>First jobs</strong>
+                  <span>You receive clear scopes and standards. You deliver. You get more.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <p class="small-links">
+              Prefer not to use the form? You can still email us:
+              <br />
+              <a href="mailto:hello@camcleans.co.uk?subject=Cleaner%20Application%20-%20CamCleans">hello@camcleans.co.uk</a>
+            </p>
+
+            <p style="margin-top:10px; color: rgba(230,240,255,0.6); font-size: 12.5px;">
+              Minimum expectation: reliable attendance, honest timekeeping, high standards, and respectful behaviour in client homes.
+            </p>
+          </div>
+        </aside>
+
+      </div>
+
+      <div class="footer-mini">© 2026 CamCleans. All rights reserved.</div>
+
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      const form = document.getElementById("joinForm");
+      const statusBox = document.getElementById("statusBox");
+      const saveBtn = document.getElementById("saveBtn");
+      const clearBtn = document.getElementById("clearBtn");
+
+      // Change this later to your final receiving email address.
+      // For now we keep the existing placeholder.
+      const DEST_EMAIL = "hello@camcleans.co.uk";
+
+      const STORAGE_KEY = "camcleans_join_cleaner_draft_v1";
+
+      function showStatus(type, msg) {
+        statusBox.className = "status show " + type;
+        statusBox.textContent = msg;
+      }
+
+      function hideStatus() {
+        statusBox.className = "status";
+        statusBox.textContent = "";
+      }
+
+      function getChecked(name) {
+        return Array.from(document.querySelectorAll('input[name="' + name + '"]:checked'))
+          .map(i => i.value);
+      }
+
+      function serialize() {
+        const data = {
+          fullName: form.fullName.value.trim(),
+          phone: form.phone.value.trim(),
+          email: form.email.value.trim(),
+          postcode: form.postcode.value.trim(),
+          coverageMiles: form.coverageMiles.value,
+          status: form.status.value,
+          experience: form.experience.value,
+          availability: form.availability.value,
+          services: getChecked("services"),
+          dbs: document.getElementById("dbs").checked,
+          insured: document.getElementById("insured").checked,
+          idRightToWork: document.getElementById("idRightToWork").checked,
+          agreeQuality: document.getElementById("agreeQuality").checked,
+          transport: form.transport.value,
+          equipment: form.equipment.value,
+          notes: form.notes.value.trim(),
+          consent: document.getElementById("consent").checked,
+          submittedAt: new Date().toISOString()
+        };
+        return data;
+      }
+
+      function loadDraft() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return;
+          const d = JSON.parse(raw);
+
+          form.fullName.value = d.fullName || "";
+          form.phone.value = d.phone || "";
+          form.email.value = d.email || "";
+          form.postcode.value = d.postcode || "";
+          if (d.coverageMiles) form.coverageMiles.value = d.coverageMiles;
+          if (d.status) form.status.value = d.status;
+          if (d.experience) form.experience.value = d.experience;
+          if (d.availability) form.availability.value = d.availability;
+
+          // services checkboxes
+          if (Array.isArray(d.services)) {
+            const boxes = document.querySelectorAll('input[name="services"]');
+            boxes.forEach(b => b.checked = d.services.includes(b.value));
+          }
+
+          document.getElementById("dbs").checked = !!d.dbs;
+          document.getElementById("insured").checked = !!d.insured;
+          document.getElementById("idRightToWork").checked = !!d.idRightToWork;
+          document.getElementById("agreeQuality").checked = !!d.agreeQuality;
+
+          if (d.transport) form.transport.value = d.transport;
+          if (d.equipment) form.equipment.value = d.equipment;
+
+          form.notes.value = d.notes || "";
+          document.getElementById("consent").checked = !!d.consent;
+
+          showStatus("warn", "Draft loaded from this device.");
+        } catch (e) {
+          // ignore
+        }
+      }
+
+      function saveDraft() {
+        const data = serialize();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        showStatus("warn", "Draft saved on this device.");
+      }
+
+      function clearAll() {
+        form.reset();
+        localStorage.removeItem(STORAGE_KEY);
+        hideStatus();
+        showStatus("warn", "Cleared.");
+      }
+
+      // Require at least one service checkbox
+      function validateServices() {
+        const selected = getChecked("services");
+        return selected.length > 0;
+      }
+
+      // Basic UK postcode sanity (not perfect; good enough for client-side)
+      function looksLikePostcode(s) {
+        const v = (s || "").trim().toUpperCase();
+        if (v.length < 5) return false;
+        return /^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/.test(v);
+      }
+
+      function buildEmailBody(d) {
+        const lines = [
+          "CLEANER APPLICATION (CamCleans)",
+          "--------------------------------",
+          "Full name: " + d.fullName,
+          "Phone: " + d.phone,
+          "Email: " + d.email,
+          "Home postcode: " + d.postcode,
+          "Coverage radius: " + d.coverageMiles,
+          "Work status: " + d.status,
+          "Experience: " + d.experience,
+          "Availability: " + d.availability,
+          "Services: " + (d.services && d.services.length ? d.services.join(", ") : "—"),
+          "DBS: " + (d.dbs ? "Yes / can obtain" : "No / not stated"),
+          "Insurance: " + (d.insured ? "Yes / can obtain" : "No / not stated"),
+          "Right to work confirmed: " + (d.idRightToWork ? "Yes" : "No"),
+          "Quality checks agreed: " + (d.agreeQuality ? "Yes" : "No"),
+          "Transport: " + d.transport,
+          "Equipment: " + d.equipment,
+          "",
+          "Summary:",
+          d.notes || "—",
+          "",
+          "Submitted: " + d.submittedAt
+        ];
+        return lines.join("\n");
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        hideStatus();
+
+        // Native validation
+        if (!form.checkValidity()) {
+          showStatus("bad", "Fix the highlighted fields and try again.");
+          form.reportValidity();
+          return;
+        }
+
+        if (!validateServices()) {
+          showStatus("bad", "Select at least one service you can do.");
+          return;
+        }
+
+        // Postcode sanity check (soft fail)
+        const pc = form.postcode.value.trim();
+        if (!looksLikePostcode(pc)) {
+          showStatus("bad", "Postcode looks wrong. Example format: PO19 7TG.");
+          return;
+        }
+
+        const data = serialize();
+
+        // Save a copy locally
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+        // Mailto fallback (until a real endpoint is wired in)
+        const subject = encodeURIComponent("Cleaner Application - " + data.fullName + " (" + data.postcode.toUpperCase() + ")");
+        const body = encodeURIComponent(buildEmailBody(data));
+        const mailto = "mailto:" + encodeURIComponent(DEST_EMAIL) + "?subject=" + subject + "&body=" + body;
+
+        showStatus("good", "Application prepared. Your email client will open to send it now.");
+
+        // Give the user a beat to see the message then open email client
+        setTimeout(() => {
+          window.location.href = mailto;
+        }, 350);
+      });
+
+      saveBtn.addEventListener("click", function () {
+        // Allow saving partial drafts without full validity
+        try {
+          const data = serialize();
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+          showStatus("warn", "Draft saved on this device.");
+        } catch (e) {
+          showStatus("bad", "Could not save draft.");
+        }
+      });
+
+      clearBtn.addEventListener("click", function () {
+        clearAll();
+      });
+
+      // Load existing draft on page load
+      loadDraft();
+    })();
+  </script>
 </body>
 </html>

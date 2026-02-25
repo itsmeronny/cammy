@@ -1,39 +1,677 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cleaning Prices | CamCleans</title>
-<meta name="description" content="Transparent nationwide cleaning prices for domestic and commercial services.">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cleaning Prices | CamCleans</title>
+  <meta name="description" content="Transparent nationwide cleaning prices for domestic and commercial services. Get an exact quote with a structured request form." />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    :root{
+      --panel: rgba(255,255,255,0.06);
+      --panel2: rgba(255,255,255,0.04);
+      --stroke: rgba(255,255,255,0.12);
+      --muted: rgba(230,240,255,0.75);
+      --muted2: rgba(230,240,255,0.6);
+      --good: rgba(64,255,170,0.18);
+      --warn: rgba(255,200,80,0.18);
+      --bad: rgba(255,80,110,0.18);
+      --shadow: 0 24px 80px rgba(0,0,0,0.55);
+      --radius: 18px;
+    }
+
+    body{
+      min-height: 100vh;
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(60,120,255,0.22), transparent 55%),
+        radial-gradient(900px 700px at 82% 26%, rgba(120,70,255,0.18), transparent 55%),
+        radial-gradient(1100px 700px at 50% 92%, rgba(40,220,255,0.12), transparent 55%),
+        #0b0f19;
+    }
+
+    .page{ padding: 86px 0 64px; }
+    .wrap{ width: 92%; max-width: 1160px; margin: 0 auto; }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 0 18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      text-decoration:none;
+      color: inherit;
+    }
+
+    .mark{
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background:
+        radial-gradient(20px 20px at 30% 30%, rgba(255,255,255,0.35), transparent 60%),
+        linear-gradient(135deg, rgba(60,120,255,0.85), rgba(120,70,255,0.75));
+      box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .brand strong{ font-weight: 800; letter-spacing: 0.2px; }
+
+    .mini-links{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+    .mini-links a{
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration:none;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+    }
+    .mini-links a:hover{ border-color: rgba(255,255,255,0.18); color: rgba(230,240,255,0.92); }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 18px;
+      align-items:start;
+      margin-top: 10px;
+    }
+    @media (max-width: 900px){ .grid2{ grid-template-columns: 1fr; } }
+
+    .panel{
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: linear-gradient(180deg, var(--panel), var(--panel2));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .panel-header{
+      padding: 22px 22px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(700px 220px at 20% 0%, rgba(60,120,255,0.22), transparent 55%),
+        radial-gradient(600px 220px at 80% 0%, rgba(120,70,255,0.16), transparent 55%);
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: rgba(230,240,255,0.92);
+      font-size: 13px;
+      letter-spacing: 0.2px;
+      margin-bottom: 12px;
+    }
+    .badge .dot{
+      width: 8px; height: 8px; border-radius: 999px;
+      background: rgba(120,70,255,0.95);
+      box-shadow: 0 0 18px rgba(120,70,255,0.35);
+    }
+
+    h1{
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.12;
+      margin: 0 0 10px;
+      letter-spacing: -0.4px;
+    }
+    .lead{ color: var(--muted); margin: 0; max-width: 72ch; }
+
+    .panel-body{ padding: 18px 22px 22px; }
+
+    /* pricing blocks */
+    .pricegrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    @media (max-width: 820px){ .pricegrid{ grid-template-columns: 1fr; } }
+
+    .pricecard{
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+    }
+    .pricecard strong{ display:flex; justify-content:space-between; gap:10px; font-size: 14px; margin-bottom: 6px; }
+    .pricecard .from{
+      font-weight: 800;
+      color: rgba(230,240,255,0.96);
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      white-space:nowrap;
+    }
+    .pricecard p{ margin:0; color: rgba(230,240,255,0.78); font-size: 13.5px; line-height: 1.55; }
+    .micro{
+      margin-top: 8px;
+      color: rgba(230,240,255,0.62);
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
+
+    .divider{ height: 1px; background: rgba(255,255,255,0.08); margin: 16px 0; }
+
+    .bullets{
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(230,240,255,0.80);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .bullets li{ margin: 6px 0; }
+
+    /* form */
+    form{ margin-top: 6px; }
+    .formgrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 720px){ .formgrid{ grid-template-columns: 1fr; } }
+
+    .field{ display:flex; flex-direction:column; gap: 7px; }
+    label{ font-size: 13px; color: rgba(230,240,255,0.88); letter-spacing: 0.1px; }
+    .hint{ font-size: 12px; color: var(--muted2); margin-top: -4px; }
+
+    input, select, textarea{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(10,14,25,0.55);
+      color: rgba(230,240,255,0.95);
+      outline: none;
+      transition: border-color .15s ease, box-shadow .15s ease, transform .05s ease;
+      font: inherit;
+    }
+    input::placeholder, textarea::placeholder{ color: rgba(230,240,255,0.45); }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(140,170,255,0.55);
+      box-shadow: 0 0 0 4px rgba(80,130,255,0.14);
+    }
+    textarea{ min-height: 140px; resize: vertical; }
+    .full{ grid-column: 1 / -1; }
+
+    .checks{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+    }
+    @media (max-width: 720px){ .checks{ grid-template-columns: 1fr; } }
+    .check{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      color: rgba(230,240,255,0.86);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .check input{ width:auto; margin-top: 2px; }
+
+    .actions{
+      display:flex;
+      gap: 12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top: 14px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: rgba(230,240,255,0.95);
+      text-decoration:none;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{ border-color: rgba(255,255,255,0.20); }
+    .btn:active{ transform: translateY(1px); }
+    .btn-primary2{
+      border: 1px solid rgba(160,190,255,0.22);
+      background:
+        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,0.25), transparent 60%),
+        linear-gradient(135deg, rgba(60,120,255,0.92), rgba(120,70,255,0.85));
+      box-shadow: 0 14px 42px rgba(0,0,0,0.45);
+    }
+
+    .status{
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: rgba(230,240,255,0.92);
+      display:none;
+    }
+    .status.show{ display:block; }
+    .status.good{ border-color: rgba(64,255,170,0.24); background: var(--good); }
+    .status.warn{ border-color: rgba(255,200,80,0.22); background: var(--warn); }
+    .status.bad{ border-color: rgba(255,80,110,0.22); background: var(--bad); }
+
+    /* right side */
+    .side{ padding: 20px 20px 16px; }
+    .side h2{ font-size: 18px; margin: 0 0 10px; letter-spacing: -0.2px; }
+    .side p{ margin: 0 0 12px; color: var(--muted); font-size: 14px; line-height: 1.55; }
+
+    .pillrow{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 10px; }
+    .pill{
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: rgba(230,240,255,0.88);
+      font-size: 13px;
+    }
+
+    .small-links a{
+      color: rgba(230,240,255,0.86);
+      text-decoration:none;
+      border-bottom: 1px dashed rgba(230,240,255,0.30);
+    }
+    .small-links a:hover{ border-bottom-color: rgba(230,240,255,0.55); }
+
+    .footer-mini{
+      margin-top: 22px;
+      color: rgba(230,240,255,0.55);
+      font-size: 12px;
+      text-align:center;
+    }
+  </style>
 </head>
+
 <body>
+  <main class="page">
+    <div class="wrap">
 
-<header class="navbar">
-  <div class="container nav-inner">
-    <div class="logo">CamCleans</div>
-  </div>
-</header>
+      <div class="topbar">
+        <a class="brand" href="/">
+          <div class="mark" aria-hidden="true"></div>
+          <div>
+            <strong>CamCleans</strong><br />
+            <span style="font-size:12px; color: rgba(230,240,255,0.6);">Pricing</span>
+          </div>
+        </a>
 
-<section class="services">
-  <div class="container">
-    <h1>Our Pricing</h1>
-    <p>Pricing varies depending on property size, service type and location.</p>
-    <ul>
-      <li>End of Tenancy: From £149</li>
-      <li>Deep Clean: From £129</li>
-      <li>Regular Cleaning: From £16 per hour</li>
-      <li>Office Cleaning: Custom Quote</li>
-    </ul>
-    <a href="/contact.html" class="btn-primary">Request Exact Quote</a>
-  </div>
-</section>
+        <div class="mini-links" aria-label="Quick links">
+          <a href="/">Home</a>
+          <a href="/services/regular-cleaning.html">Services</a>
+          <a href="/cleaning-checklist.html">Checklist</a>
+          <a href="/contact.html">Contact</a>
+        </div>
+      </div>
 
-<footer>
-  <div class="footer-bottom">
-    © 2026 CamCleans Services Ltd.
-  </div>
-</footer>
+      <div class="grid2">
 
+        <!-- LEFT: Pricing + quote form -->
+        <section class="panel" aria-labelledby="pricing-title">
+          <div class="panel-header">
+            <div class="badge"><span class="dot" aria-hidden="true"></span> Transparent baselines. Exact quotes need details.</div>
+            <h1 id="pricing-title">Our Pricing</h1>
+            <p class="lead">
+              Prices vary by service type, property size, condition, and location. These are baseline starting points.
+              If you want a firm quote, use the structured form below.
+            </p>
+          </div>
+
+          <div class="panel-body">
+            <div class="pricegrid" aria-label="Baseline pricing cards">
+              <div class="pricecard">
+                <strong><span>End of Tenancy</span><span class="from">From £149</span></strong>
+                <p>Checklist-driven move-out standard. Best for landlords, tenants, and checkout expectations.</p>
+                <div class="micro">Common uplift drivers: heavy limescale, inside appliances, heavy grease, pet hair.</div>
+              </div>
+              <div class="pricecard">
+                <strong><span>Deep Clean</span><span class="from">From £129</span></strong>
+                <p>One-off reset for lived-in homes. Targets build-up, bathrooms, kitchen focus, and detail points.</p>
+                <div class="micro">Common uplift drivers: neglected areas, mould, nicotine staining, heavy scale.</div>
+              </div>
+              <div class="pricecard">
+                <strong><span>Regular Cleaning</span><span class="from">From £16/hr</span></strong>
+                <p>Maintenance cleans (weekly/fortnightly/monthly). Scope stays stable and predictable.</p>
+                <div class="micro">Pricing depends on frequency, clutter level, and home size.</div>
+              </div>
+              <div class="pricecard">
+                <strong><span>Office / Commercial</span><span class="from">Custom</span></strong>
+                <p>Commercial schedules and out-of-hours available. Best priced by size and frequency.</p>
+                <div class="micro">Provide sq ft, number of rooms/toilets, access rules, and frequency.</div>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <h2 style="margin:0 0 10px; font-size:18px;">What changes the price (be honest)</h2>
+            <ul class="bullets">
+              <li><strong>Condition</strong>: heavy limescale, mould, heavy grease, neglect.</li>
+              <li><strong>Scope add-ons</strong>: inside oven/fridge/cupboards, blinds, multiple internal windows.</li>
+              <li><strong>Access/time constraints</strong>: key collection, no parking, stairs only, tight deadlines.</li>
+              <li><strong>Size</strong>: beds/baths matter more than “small/medium/large”.</li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <h2 style="margin:0 0 10px; font-size:18px;">Request an exact quote</h2>
+            <p style="margin:0 0 14px; color: rgba(230,240,255,0.75); font-size:14px;">
+              This uses a “send by email” fallback until the final delivery address is confirmed. Your input is formatted so it can be actioned immediately.
+            </p>
+
+            <form id="pricingQuoteForm" novalidate>
+              <div class="formgrid">
+
+                <div class="field">
+                  <label for="name">Full name *</label>
+                  <input id="name" name="name" type="text" autocomplete="name" placeholder="e.g. Alex Turner" required />
+                </div>
+
+                <div class="field">
+                  <label for="email">Email *</label>
+                  <input id="email" name="email" type="email" autocomplete="email" placeholder="e.g. alex@email.com" required />
+                </div>
+
+                <div class="field">
+                  <label for="service">Service *</label>
+                  <select id="service" name="service" required>
+                    <option value="" selected disabled>Select…</option>
+                    <option value="End of Tenancy">End of Tenancy</option>
+                    <option value="Deep Clean">Deep Clean</option>
+                    <option value="Regular Domestic">Regular Domestic</option>
+                    <option value="After Builders">After Builders</option>
+                    <option value="Carpet Cleaning">Carpet Cleaning</option>
+                    <option value="Office / Commercial">Office / Commercial</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="postcode">Postcode *</label>
+                  <input id="postcode" name="postcode" type="text" autocomplete="postal-code" placeholder="e.g. PO19 7TG" required />
+                </div>
+
+                <div class="field">
+                  <label for="beds">Bedrooms</label>
+                  <select id="beds" name="beds">
+                    <option value="" selected>Unknown</option>
+                    <option>Studio</option>
+                    <option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="baths">Bathrooms</label>
+                  <select id="baths" name="baths">
+                    <option value="" selected>Unknown</option>
+                    <option>1</option><option>2</option><option>3</option><option>4+</option>
+                  </select>
+                </div>
+
+                <div class="field full">
+                  <label>Condition & add-ons (tick what’s true)</label>
+                  <div class="checks" role="group" aria-label="Condition and add-ons">
+                    <label class="check"><input type="checkbox" id="heavyLimescale" /> Heavy limescale</label>
+                    <label class="check"><input type="checkbox" id="mould" /> Mould present</label>
+                    <label class="check"><input type="checkbox" id="petHair" /> Heavy pet hair</label>
+                    <label class="check"><input type="checkbox" id="heavyGrease" /> Heavy grease build-up</label>
+                    <label class="check"><input type="checkbox" id="insideOven" /> Inside oven</label>
+                    <label class="check"><input type="checkbox" id="insideFridge" /> Inside fridge</label>
+                    <label class="check"><input type="checkbox" id="insideCupboards" /> Inside cupboards</label>
+                    <label class="check"><input type="checkbox" id="hasPhotos" /> I can provide photos</label>
+                  </div>
+                </div>
+
+                <div class="field full">
+                  <label for="message">Job details *</label>
+                  <textarea id="message" name="message" placeholder="State: property type, urgency/date, access (keys/parking), priority areas, and anything that’s likely to increase time." required></textarea>
+                </div>
+
+                <div class="field full">
+                  <label class="check">
+                    <input type="checkbox" id="consent" required />
+                    I consent to being contacted about this quote request. *
+                  </label>
+                  <div class="hint">This page uses a “send by email” fallback until final delivery wiring is set.</div>
+                </div>
+
+              </div>
+
+              <div class="actions">
+                <button type="submit" class="btn btn-primary2">Send Quote Request</button>
+                <button type="button" class="btn" id="saveBtn">Save Draft</button>
+                <button type="button" class="btn" id="clearBtn">Clear</button>
+              </div>
+
+              <div class="status" id="statusBox" role="status" aria-live="polite"></div>
+            </form>
+
+          </div>
+        </section>
+
+        <!-- RIGHT: Guidance -->
+        <aside class="panel">
+          <div class="side">
+            <h2>Make the quote accurate</h2>
+            <p>If your request is vague, the quote won’t be firm. If you want speed, give hard info.</p>
+
+            <div class="pillrow" aria-hidden="true">
+              <span class="pill">Postcode</span>
+              <span class="pill">Beds + baths</span>
+              <span class="pill">Condition flags</span>
+              <span class="pill">Photos</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <h2>Next steps</h2>
+            <p class="small-links" style="margin:0 0 10px;">
+              Want scope clarity? <a href="/cleaning-checklist.html">See the checklist</a>.
+            </p>
+            <p class="small-links" style="margin:0 0 10px;">
+              General questions? <a href="/faqs.html">Read FAQs</a>.
+            </p>
+            <p class="small-links" style="margin:0;">
+              Prefer contact page? <a href="/contact.html">Go to Contact</a>.
+            </p>
+
+            <div class="divider"></div>
+
+            <h2>Direct email</h2>
+            <p class="small-links" style="margin:0;">
+              <a href="mailto:hello@camcleans.co.uk?subject=CamCleans%20Quote%20Request%20(Pricing)">hello@camcleans.co.uk</a>
+            </p>
+
+            <p style="margin-top:10px; color: rgba(230,240,255,0.6); font-size: 12.5px;">
+              If it’s urgent: include date + access method + photos.
+            </p>
+          </div>
+        </aside>
+
+      </div>
+
+      <div class="footer-mini">© 2026 CamCleans Services Ltd. All rights reserved.</div>
+
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      const form = document.getElementById("pricingQuoteForm");
+      const statusBox = document.getElementById("statusBox");
+      const saveBtn = document.getElementById("saveBtn");
+      const clearBtn = document.getElementById("clearBtn");
+
+      // Change later to final receiving address
+      const DEST_EMAIL = "hello@camcleans.co.uk";
+      const STORAGE_KEY = "camcleans_pricing_quote_draft_v1";
+
+      function showStatus(type, msg) {
+        statusBox.className = "status show " + type;
+        statusBox.textContent = msg;
+      }
+      function hideStatus() {
+        statusBox.className = "status";
+        statusBox.textContent = "";
+      }
+
+      function looksLikePostcode(s) {
+        const v = (s || "").trim().toUpperCase();
+        if (!v) return false;
+        return /^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/.test(v);
+      }
+
+      function serialize() {
+        return {
+          name: form.name.value.trim(),
+          email: form.email.value.trim(),
+          service: form.service.value,
+          postcode: form.postcode.value.trim(),
+          beds: form.beds.value || "Unknown",
+          baths: form.baths.value || "Unknown",
+          heavyLimescale: document.getElementById("heavyLimescale").checked,
+          mould: document.getElementById("mould").checked,
+          petHair: document.getElementById("petHair").checked,
+          heavyGrease: document.getElementById("heavyGrease").checked,
+          insideOven: document.getElementById("insideOven").checked,
+          insideFridge: document.getElementById("insideFridge").checked,
+          insideCupboards: document.getElementById("insideCupboards").checked,
+          hasPhotos: document.getElementById("hasPhotos").checked,
+          message: form.message.value.trim(),
+          consent: document.getElementById("consent").checked,
+          submittedAt: new Date().toISOString()
+        };
+      }
+
+      function buildEmailBody(d) {
+        const lines = [
+          "QUOTE REQUEST (Pricing page) - CamCleans",
+          "----------------------------------------",
+          "Name: " + d.name,
+          "Email: " + d.email,
+          "Service: " + d.service,
+          "Postcode: " + d.postcode,
+          "Bedrooms: " + d.beds,
+          "Bathrooms: " + d.baths,
+          "",
+          "Condition / Add-ons:",
+          "- Heavy limescale: " + (d.heavyLimescale ? "Yes" : "No"),
+          "- Mould: " + (d.mould ? "Yes" : "No"),
+          "- Heavy pet hair: " + (d.petHair ? "Yes" : "No"),
+          "- Heavy grease: " + (d.heavyGrease ? "Yes" : "No"),
+          "- Inside oven: " + (d.insideOven ? "Yes" : "No"),
+          "- Inside fridge: " + (d.insideFridge ? "Yes" : "No"),
+          "- Inside cupboards: " + (d.insideCupboards ? "Yes" : "No"),
+          "- Photos available: " + (d.hasPhotos ? "Yes" : "No"),
+          "",
+          "Details:",
+          d.message || "—",
+          "",
+          "Submitted: " + d.submittedAt
+        ];
+        return lines.join("\n");
+      }
+
+      function loadDraft() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return;
+          const d = JSON.parse(raw);
+
+          form.name.value = d.name || "";
+          form.email.value = d.email || "";
+          if (d.service) form.service.value = d.service;
+          form.postcode.value = d.postcode || "";
+          form.beds.value = d.beds && d.beds !== "Unknown" ? d.beds : "";
+          form.baths.value = d.baths && d.baths !== "Unknown" ? d.baths : "";
+
+          document.getElementById("heavyLimescale").checked = !!d.heavyLimescale;
+          document.getElementById("mould").checked = !!d.mould;
+          document.getElementById("petHair").checked = !!d.petHair;
+          document.getElementById("heavyGrease").checked = !!d.heavyGrease;
+          document.getElementById("insideOven").checked = !!d.insideOven;
+          document.getElementById("insideFridge").checked = !!d.insideFridge;
+          document.getElementById("insideCupboards").checked = !!d.insideCupboards;
+          document.getElementById("hasPhotos").checked = !!d.hasPhotos;
+
+          form.message.value = d.message || "";
+          document.getElementById("consent").checked = !!d.consent;
+
+          showStatus("warn", "Draft loaded from this device.");
+        } catch (e) {}
+      }
+
+      function saveDraft() {
+        try {
+          const data = serialize();
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+          showStatus("warn", "Draft saved on this device.");
+        } catch (e) {
+          showStatus("bad", "Could not save draft.");
+        }
+      }
+
+      function clearAll() {
+        form.reset();
+        localStorage.removeItem(STORAGE_KEY);
+        hideStatus();
+        showStatus("warn", "Cleared.");
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        hideStatus();
+
+        if (!form.checkValidity()) {
+          showStatus("bad", "Fix the highlighted fields and try again.");
+          form.reportValidity();
+          return;
+        }
+
+        const pc = form.postcode.value.trim();
+        if (!looksLikePostcode(pc)) {
+          showStatus("bad", "Postcode looks wrong. Example format: PO19 7TG.");
+          return;
+        }
+
+        const data = serialize();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+        const subject = encodeURIComponent("CamCleans Quote Request (Pricing) - " + data.service + " (" + data.postcode.toUpperCase() + ")");
+        const body = encodeURIComponent(buildEmailBody(data));
+        const mailto = "mailto:" + encodeURIComponent(DEST_EMAIL) + "?subject=" + subject + "&body=" + body;
+
+        showStatus("good", "Quote request prepared. Your email client will open to send it now.");
+
+        setTimeout(() => {
+          window.location.href = mailto;
+        }, 350);
+      });
+
+      saveBtn.addEventListener("click", saveDraft);
+      clearBtn.addEventListener("click", clearAll);
+      loadDraft();
+    })();
+  </script>
 </body>
 </html>
