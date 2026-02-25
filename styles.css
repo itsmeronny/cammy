@@ -246,4 +246,75 @@ footer a {
     justify-content: center;
   }
 
+}/* ===== ELITE SERVICE PAGE ===== */
+
+.service-hero {
+  padding: 100px 0 60px;
+}
+
+.service-hero-inner {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.service-hero-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.service-hero-text h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+.service-hero-text p {
+  opacity: 0.9;
+  max-width: 600px;
+}
+
+.service-hero-image {
+  flex: 1;
+  min-height: 320px;
+  border-radius: 20px;
+  background: linear-gradient(145deg,#1a2236,#0f172a);
+  background-size: cover;
+  background-position: center;
+}
+
+.service-section {
+  padding: 80px 0;
+}
+
+.section-light {
+  background: #0f172a;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.feature-card {
+  background: #111827;
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.trust-band {
+  background: linear-gradient(90deg,#2563eb,#1e40af);
+  padding: 60px 0;
+  text-align: center;
+}
+
+.trust-band h2 {
+  margin-bottom: 15px;
+}
+
+.cta-block {
+  padding: 80px 0;
+  text-align: center;
 }
