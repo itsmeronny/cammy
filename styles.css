@@ -17,6 +17,14 @@ body {
   margin: auto;
 }
 
+/* ===== LOGO ===== */
+
+.logo img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+
 /* NAVBAR */
 
 .navbar {
@@ -246,7 +254,9 @@ footer a {
     justify-content: center;
   }
 
-}/* ===== ELITE SERVICE PAGE ===== */
+}
+
+/* ===== ELITE SERVICE PAGE ===== */
 
 .service-hero {
   padding: 100px 0 60px;
