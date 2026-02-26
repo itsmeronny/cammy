@@ -507,170 +507,58 @@
           </div>
         </aside>
 
-      </div>
-
-      <div class="footer-mini">© 2026 CamCleans Services Ltd. All rights reserved.</div>
-
     </div>
-  </main>
 
-  <script>
-    (function () {
-      const form = document.getElementById("pricingQuoteForm");
-      const statusBox = document.getElementById("statusBox");
-      const saveBtn = document.getElementById("saveBtn");
-      const clearBtn = document.getElementById("clearBtn");
+  </div>
+</main>
 
-      // Change later to final receiving address
-      const DEST_EMAIL = "hello@camcleans.co.uk";
-      const STORAGE_KEY = "camcleans_pricing_quote_draft_v1";
+<!-- FOOTER MUST BE OUTSIDE MAIN -->
 
-      function showStatus(type, msg) {
-        statusBox.className = "status show " + type;
-        statusBox.textContent = msg;
-      }
-      function hideStatus() {
-        statusBox.className = "status";
-        statusBox.textContent = "";
-      }
+<footer>
+  <div class="container footer-grid">
 
-      function looksLikePostcode(s) {
-        const v = (s || "").trim().toUpperCase();
-        if (!v) return false;
-        return /^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/.test(v);
-      }
+    <div>
+      <h4>CamCleans</h4>
+      <p>Professional cleaning services across the UK. Bringing spotless standards to every property.</p>
+    </div>
 
-      function serialize() {
-        return {
-          name: form.name.value.trim(),
-          email: form.email.value.trim(),
-          service: form.service.value,
-          postcode: form.postcode.value.trim(),
-          beds: form.beds.value || "Unknown",
-          baths: form.baths.value || "Unknown",
-          heavyLimescale: document.getElementById("heavyLimescale").checked,
-          mould: document.getElementById("mould").checked,
-          petHair: document.getElementById("petHair").checked,
-          heavyGrease: document.getElementById("heavyGrease").checked,
-          insideOven: document.getElementById("insideOven").checked,
-          insideFridge: document.getElementById("insideFridge").checked,
-          insideCupboards: document.getElementById("insideCupboards").checked,
-          hasPhotos: document.getElementById("hasPhotos").checked,
-          message: form.message.value.trim(),
-          consent: document.getElementById("consent").checked,
-          submittedAt: new Date().toISOString()
-        };
-      }
+    <div>
+      <h4>Our Services</h4>
+      <ul>
+        <li><a href="/services/end-of-tenancy.html">End of Tenancy Cleaning</a></li>
+        <li><a href="/services/deep-clean.html">One-off Deep Clean</a></li>
+        <li><a href="/services/regular-cleaning.html">Regular Domestic Cleaning</a></li>
+        <li><a href="/services/carpet-cleaning.html">Carpet Cleaning</a></li>
+        <li><a href="/services/office-cleaning.html">Office Cleaning</a></li>
+        <li><a href="/services/after-builders.html">After Builders Cleaning</a></li>
+      </ul>
+    </div>
 
-      function buildEmailBody(d) {
-        const lines = [
-          "QUOTE REQUEST (Pricing page) - CamCleans",
-          "----------------------------------------",
-          "Name: " + d.name,
-          "Email: " + d.email,
-          "Service: " + d.service,
-          "Postcode: " + d.postcode,
-          "Bedrooms: " + d.beds,
-          "Bathrooms: " + d.baths,
-          "",
-          "Condition / Add-ons:",
-          "- Heavy limescale: " + (d.heavyLimescale ? "Yes" : "No"),
-          "- Mould: " + (d.mould ? "Yes" : "No"),
-          "- Heavy pet hair: " + (d.petHair ? "Yes" : "No"),
-          "- Heavy grease: " + (d.heavyGrease ? "Yes" : "No"),
-          "- Inside oven: " + (d.insideOven ? "Yes" : "No"),
-          "- Inside fridge: " + (d.insideFridge ? "Yes" : "No"),
-          "- Inside cupboards: " + (d.insideCupboards ? "Yes" : "No"),
-          "- Photos available: " + (d.hasPhotos ? "Yes" : "No"),
-          "",
-          "Details:",
-          d.message || "—",
-          "",
-          "Submitted: " + d.submittedAt
-        ];
-        return lines.join("\n");
-      }
+    <div>
+      <h4>Company</h4>
+      <ul>
+        <li><a href="/about.html">About Us</a></li>
+        <li><a href="/pricing.html">Pricing</a></li>
+        <li><a href="/cleaning-checklist.html">Cleaning Checklist</a></li>
+        <li><a href="/faqs.html">FAQs</a></li>
+        <li><a href="/join-cleaner.html">Join as a Cleaner</a></li>
+        <li><a href="/contact.html">Contact Us</a></li>
+      </ul>
+    </div>
 
-      function loadDraft() {
-        try {
-          const raw = localStorage.getItem(STORAGE_KEY);
-          if (!raw) return;
-          const d = JSON.parse(raw);
+    <div>
+      <h4>Get in Touch</h4>
+      <p>Nationwide UK Coverage</p>
+      <p>0800 000 000</p>
+      <p>hello@camcleans.co.uk</p>
+    </div>
 
-          form.name.value = d.name || "";
-          form.email.value = d.email || "";
-          if (d.service) form.service.value = d.service;
-          form.postcode.value = d.postcode || "";
-          form.beds.value = d.beds && d.beds !== "Unknown" ? d.beds : "";
-          form.baths.value = d.baths && d.baths !== "Unknown" ? d.baths : "";
+  </div>
 
-          document.getElementById("heavyLimescale").checked = !!d.heavyLimescale;
-          document.getElementById("mould").checked = !!d.mould;
-          document.getElementById("petHair").checked = !!d.petHair;
-          document.getElementById("heavyGrease").checked = !!d.heavyGrease;
-          document.getElementById("insideOven").checked = !!d.insideOven;
-          document.getElementById("insideFridge").checked = !!d.insideFridge;
-          document.getElementById("insideCupboards").checked = !!d.insideCupboards;
-          document.getElementById("hasPhotos").checked = !!d.hasPhotos;
+  <div class="footer-bottom">
+    © 2026 CamCleans Services Ltd. All rights reserved.
+  </div>
+</footer>
 
-          form.message.value = d.message || "";
-          document.getElementById("consent").checked = !!d.consent;
-
-          showStatus("warn", "Draft loaded from this device.");
-        } catch (e) {}
-      }
-
-      function saveDraft() {
-        try {
-          const data = serialize();
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-          showStatus("warn", "Draft saved on this device.");
-        } catch (e) {
-          showStatus("bad", "Could not save draft.");
-        }
-      }
-
-      function clearAll() {
-        form.reset();
-        localStorage.removeItem(STORAGE_KEY);
-        hideStatus();
-        showStatus("warn", "Cleared.");
-      }
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        hideStatus();
-
-        if (!form.checkValidity()) {
-          showStatus("bad", "Fix the highlighted fields and try again.");
-          form.reportValidity();
-          return;
-        }
-
-        const pc = form.postcode.value.trim();
-        if (!looksLikePostcode(pc)) {
-          showStatus("bad", "Postcode looks wrong. Example format: PO19 7TG.");
-          return;
-        }
-
-        const data = serialize();
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-
-        const subject = encodeURIComponent("CamCleans Quote Request (Pricing) - " + data.service + " (" + data.postcode.toUpperCase() + ")");
-        const body = encodeURIComponent(buildEmailBody(data));
-        const mailto = "mailto:" + encodeURIComponent(DEST_EMAIL) + "?subject=" + subject + "&body=" + body;
-
-        showStatus("good", "Quote request prepared. Your email client will open to send it now.");
-
-        setTimeout(() => {
-          window.location.href = mailto;
-        }, 350);
-      });
-
-      saveBtn.addEventListener("click", saveDraft);
-      clearBtn.addEventListener("click", clearAll);
-      loadDraft();
-    })();
-  </script>
 </body>
 </html>

@@ -341,24 +341,25 @@
 </head>
 
 <body>
-  <header class="navbar">
-  <div class="container nav-inner">
-    <div class="logo">
-  <img src="/camcleans-wordmark.svg" alt="CamCleans">
-</div>
-
-    <nav class="nav-links">
-      <a href="/">Home</a>
-      <a href="#services">Services</a>
-      <a href="/about.html">About</a>
-      <a href="/pricing.html">Prices</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
-
-    <a href="/contact.html" class="btn-primary nav-cta">Get Quote</a>
-  </div>
-</header><main class="page">
+  <main class="page">
     <div class="wrap">
+
+      <div class="topbar">
+        <a class="brand" href="/">
+          <div class="mark" aria-hidden="true"></div>
+          <div>
+           <img src="/camcleans-wordmark.png" alt="CamCleans" style="height:28px;"><br />
+            <span style="font-size:12px; color: rgba(230,240,255,0.6);">Cleaning Checklist</span>
+          </div>
+        </a>
+
+        <div class="mini-links" aria-label="Quick links">
+          <a href="/services/regular-cleaning.html">Services</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/faqs.html">FAQs</a>
+          <a href="/contact.html">Contact</a>
+        </div>
+      </div>
 
       <div class="grid2">
 
@@ -771,154 +772,58 @@
           </div>
         </aside>
 
-      </div>
-
-      <div class="footer-mini">© 2026 CamCleans Services Ltd. All rights reserved.</div>
-
     </div>
-  </main>
 
-  <script>
-    (function(){
-      // Tabs
-      const btns = Array.from(document.querySelectorAll(".tabbtn"));
-      const panes = Array.from(document.querySelectorAll("[data-pane]"));
+  </div>
+</main>
 
-      function setTab(key){
-        btns.forEach(b => {
-          const on = b.getAttribute("data-tab") === key;
-          b.classList.toggle("active", on);
-          b.setAttribute("aria-selected", on ? "true" : "false");
-        });
-        panes.forEach(p => p.style.display = (p.getAttribute("data-pane") === key) ? "" : "none");
-      }
-      btns.forEach(b => b.addEventListener("click", () => setTab(b.getAttribute("data-tab"))));
+<!-- FOOTER MUST BE OUTSIDE MAIN -->
 
-      // Form (mailto fallback)
-      const form = document.getElementById("checklistForm");
-      const statusBox = document.getElementById("statusBox");
-      const saveBtn = document.getElementById("saveBtn");
-      const clearBtn = document.getElementById("clearBtn");
+<footer>
+  <div class="container footer-grid">
 
-      // Change later to final receiving address
-      const DEST_EMAIL = "hello@camcleans.co.uk";
-      const STORAGE_KEY = "camcleans_checklist_draft_v1";
+    <div>
+      <h4>CamCleans</h4>
+      <p>Professional cleaning services across the UK. Bringing spotless standards to every property.</p>
+    </div>
 
-      function showStatus(type, msg){
-        statusBox.className = "status show " + type;
-        statusBox.textContent = msg;
-      }
-      function hideStatus(){
-        statusBox.className = "status";
-        statusBox.textContent = "";
-      }
-      function looksLikePostcode(s){
-        const v = (s || "").trim().toUpperCase();
-        if (!v) return true; // optional
-        return /^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/.test(v);
-      }
-      function serialize(){
-        return {
-          name: form.name.value.trim(),
-          email: form.email.value.trim(),
-          service: form.service.value,
-          postcode: form.postcode.value.trim(),
-          wantCopy: document.getElementById("wantCopy").checked,
-          needQuote: document.getElementById("needQuote").checked,
-          scopeQuestion: document.getElementById("scopeQuestion").checked,
-          havePhotos: document.getElementById("havePhotos").checked,
-          message: form.message.value.trim(),
-          consent: document.getElementById("consent").checked,
-          submittedAt: new Date().toISOString()
-        };
-      }
-      function buildEmailBody(d){
-        const lines = [
-          "CHECKLIST REQUEST / SCOPE QUESTION (CamCleans)",
-          "----------------------------------------------",
-          "Name: " + d.name,
-          "Email: " + d.email,
-          "Service: " + d.service,
-          "Postcode: " + (d.postcode || "—"),
-          "",
-          "Request type:",
-          "- Wants checklist copy: " + (d.wantCopy ? "Yes" : "No"),
-          "- Wants quote: " + (d.needQuote ? "Yes" : "No"),
-          "- Has scope question: " + (d.scopeQuestion ? "Yes" : "No"),
-          "- Photos available: " + (d.havePhotos ? "Yes" : "No"),
-          "",
-          "Message:",
-          d.message || "—",
-          "",
-          "Submitted: " + d.submittedAt
-        ];
-        return lines.join("\n");
-      }
-      function loadDraft(){
-        try{
-          const raw = localStorage.getItem(STORAGE_KEY);
-          if(!raw) return;
-          const d = JSON.parse(raw);
-          form.name.value = d.name || "";
-          form.email.value = d.email || "";
-          if(d.service) form.service.value = d.service;
-          form.postcode.value = d.postcode || "";
-          document.getElementById("wantCopy").checked = !!d.wantCopy;
-          document.getElementById("needQuote").checked = !!d.needQuote;
-          document.getElementById("scopeQuestion").checked = !!d.scopeQuestion;
-          document.getElementById("havePhotos").checked = !!d.havePhotos;
-          form.message.value = d.message || "";
-          document.getElementById("consent").checked = !!d.consent;
-          showStatus("warn","Draft loaded from this device.");
-        }catch(e){}
-      }
-      function saveDraft(){
-        try{
-          const d = serialize();
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
-          showStatus("warn","Draft saved on this device.");
-        }catch(e){
-          showStatus("bad","Could not save draft.");
-        }
-      }
-      function clearAll(){
-        form.reset();
-        localStorage.removeItem(STORAGE_KEY);
-        hideStatus();
-        showStatus("warn","Cleared.");
-      }
+    <div>
+      <h4>Our Services</h4>
+      <ul>
+        <li><a href="/services/end-of-tenancy.html">End of Tenancy Cleaning</a></li>
+        <li><a href="/services/deep-clean.html">One-off Deep Clean</a></li>
+        <li><a href="/services/regular-cleaning.html">Regular Domestic Cleaning</a></li>
+        <li><a href="/services/carpet-cleaning.html">Carpet Cleaning</a></li>
+        <li><a href="/services/office-cleaning.html">Office Cleaning</a></li>
+        <li><a href="/services/after-builders.html">After Builders Cleaning</a></li>
+      </ul>
+    </div>
 
-      form.addEventListener("submit", function(e){
-        e.preventDefault();
-        hideStatus();
+    <div>
+      <h4>Company</h4>
+      <ul>
+        <li><a href="/about.html">About Us</a></li>
+        <li><a href="/pricing.html">Pricing</a></li>
+        <li><a href="/cleaning-checklist.html">Cleaning Checklist</a></li>
+        <li><a href="/faqs.html">FAQs</a></li>
+        <li><a href="/join-cleaner.html">Join as a Cleaner</a></li>
+        <li><a href="/contact.html">Contact Us</a></li>
+      </ul>
+    </div>
 
-        if(!form.checkValidity()){
-          showStatus("bad","Fix the highlighted fields and try again.");
-          form.reportValidity();
-          return;
-        }
+    <div>
+      <h4>Get in Touch</h4>
+      <p>Nationwide UK Coverage</p>
+      <p>0800 000 000</p>
+      <p>hello@camcleans.co.uk</p>
+    </div>
 
-        const pc = form.postcode.value.trim();
-        if(!looksLikePostcode(pc)){
-          showStatus("bad","Postcode looks wrong. Example format: PO19 7TG.");
-          return;
-        }
+  </div>
 
-        const data = serialize();
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  <div class="footer-bottom">
+    © 2026 CamCleans Services Ltd. All rights reserved.
+  </div>
+</footer>
 
-        const subject = encodeURIComponent("CamCleans Checklist / Scope - " + data.service + (data.postcode ? " (" + data.postcode.toUpperCase() + ")" : ""));
-        const body = encodeURIComponent(buildEmailBody(data));
-        const mailto = "mailto:" + encodeURIComponent(DEST_EMAIL) + "?subject=" + subject + "&body=" + body;
-
-        showStatus("good","Request prepared. Your email client will open to send it now.");
-        setTimeout(() => { window.location.href = mailto; }, 350);
-      });
-
-      saveBtn.addEventListener("click", saveDraft);
-      clearBtn.addEventListener("click", clearAll);
-      loadDraft();
-    })();
-  </script>
 </body>
 </html>
