@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cleaning Checklist | CamCleans</title>
-  <meta name="description" content="Clear, structured cleaning checklist for CamCleans services. Includes a request form for quotes, scope questions, and checklist copies." />
+  <meta name="description" content="A clear, scope-first cleaning checklist for end of tenancy, deep cleans, regular cleans, after builders, office, and add-ons." />
   <link rel="stylesheet" href="styles.css" />
 
   <style>
@@ -31,57 +31,11 @@
     }
 
     .page{ padding: 86px 0 64px; }
-    .wrap{ width: 92%; max-width: 1160px; margin: 0 auto; }
-
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 14px;
-      padding: 14px 0 18px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      text-decoration:none;
-      color: inherit;
-    }
-
-    .mark{
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background:
-        radial-gradient(20px 20px at 30% 30%, rgba(255,255,255,0.35), transparent 60%),
-        linear-gradient(135deg, rgba(60,120,255,0.85), rgba(120,70,255,0.75));
-      box-shadow: 0 12px 32px rgba(0,0,0,0.45);
-      border: 1px solid rgba(255,255,255,0.16);
-    }
-
-    .brand strong{ font-weight: 800; letter-spacing: 0.2px; }
-
-    .mini-links{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content:flex-end;
-    }
-    .mini-links a{
-      font-size: 14px;
-      color: var(--muted);
-      text-decoration:none;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.04);
-    }
-    .mini-links a:hover{ border-color: rgba(255,255,255,0.18); color: rgba(230,240,255,0.92); }
+    .wrap{ width: 92%; max-width: 1120px; margin: 0 auto; }
 
     .grid2{
       display:grid;
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: 1.05fr 0.95fr;
       gap: 18px;
       align-items:start;
       margin-top: 10px;
@@ -119,8 +73,8 @@
     }
     .badge .dot{
       width: 8px; height: 8px; border-radius: 999px;
-      background: rgba(64,255,170,0.95);
-      box-shadow: 0 0 18px rgba(64,255,170,0.35);
+      background: rgba(40,220,255,0.95);
+      box-shadow: 0 0 18px rgba(40,220,255,0.35);
     }
 
     h1{
@@ -132,7 +86,11 @@
 
     .lead{ color: var(--muted); margin: 0; max-width: 70ch; }
 
-    .chips{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 14px; }
+    .panel-body{ padding: 18px 22px 22px; }
+
+    .chips{
+      display:flex; flex-wrap:wrap; gap: 10px; margin-top: 14px;
+    }
     .chip{
       padding: 10px 12px;
       border-radius: 999px;
@@ -142,82 +100,86 @@
       font-size: 13px;
     }
 
-    .panel-body{ padding: 18px 22px 22px; }
-
-    /* checklist layout */
     .tabs{
       display:flex;
       flex-wrap:wrap;
       gap: 10px;
-      margin: 2px 0 14px;
+      padding: 14px 22px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.06);
     }
-    .tabbtn{
-      appearance:none;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.05);
-      color: rgba(230,240,255,0.9);
-      padding: 10px 12px;
+    .tab{
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+      color: rgba(230,240,255,0.92);
+      padding: 10px 14px;
       border-radius: 999px;
-      cursor:pointer;
+      cursor: pointer;
       font: inherit;
-      font-size: 13px;
+      transition: border-color .15s ease, transform .05s ease, box-shadow .15s ease;
+      user-select:none;
     }
-    .tabbtn:hover{ border-color: rgba(255,255,255,0.18); }
-    .tabbtn.active{
-      border-color: rgba(160,190,255,0.22);
+    .tab:hover{ border-color: rgba(255,255,255,0.22); }
+    .tab:active{ transform: translateY(1px); }
+    .tab[aria-selected="true"]{
+      border-color: rgba(140,170,255,0.70);
+      box-shadow: 0 0 0 4px rgba(80,130,255,0.14);
       background:
         radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,0.18), transparent 60%),
-        linear-gradient(135deg, rgba(60,120,255,0.55), rgba(120,70,255,0.45));
+        linear-gradient(135deg, rgba(60,120,255,0.35), rgba(120,70,255,0.25));
     }
 
-    .checkgrid{
+    .cards{
+      display:grid;
+      gap: 12px;
+      margin-top: 0;
+    }
+    .card{
+      padding: 14px 14px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+    }
+    .card h3{
+      margin: 0 0 8px;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+    }
+    .card ul{
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(230,240,255,0.88);
+      line-height: 1.5;
+    }
+    .card li{ margin: 6px 0; }
+
+    .grid-cards{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
+      margin-top: 12px;
     }
-    @media (max-width: 820px){ .checkgrid{ grid-template-columns: 1fr; } }
+    @media (max-width: 720px){ .grid-cards{ grid-template-columns: 1fr; } }
 
-    .block{
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.04);
-      overflow:hidden;
-    }
-    .block h3{
-      margin:0;
-      padding: 12px 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      font-size: 14px;
-      letter-spacing: -0.1px;
-    }
-    .block ul{
-      margin:0;
-      padding: 10px 12px 12px 18px;
-      color: rgba(230,240,255,0.82);
-      font-size: 13.5px;
-      line-height: 1.55;
-    }
-    .block li{ margin: 5px 0; }
-
-    .note{
+    .callout{
       margin-top: 14px;
-      padding: 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.10);
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
       background: rgba(255,255,255,0.04);
-      color: rgba(230,240,255,0.78);
-      font-size: 13px;
-      line-height: 1.55;
+      color: rgba(230,240,255,0.88);
     }
+
+    .divider{ height: 1px; background: rgba(255,255,255,0.08); margin: 18px 0; }
 
     /* form */
-    form{ margin-top: 4px; }
-    .formgrid{
+    form{ margin-top: 10px; }
+    .grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
     }
-    @media (max-width: 720px){ .formgrid{ grid-template-columns: 1fr; } }
+    @media (max-width: 720px){ .grid{ grid-template-columns: 1fr; } }
 
     .field{ display:flex; flex-direction:column; gap: 7px; }
     label{ font-size: 13px; color: rgba(230,240,255,0.88); letter-spacing: 0.1px; }
@@ -239,7 +201,7 @@
       border-color: rgba(140,170,255,0.55);
       box-shadow: 0 0 0 4px rgba(80,130,255,0.14);
     }
-    textarea{ min-height: 120px; resize: vertical; }
+    textarea{ min-height: 128px; resize: vertical; }
     .full{ grid-column: 1 / -1; }
 
     .checks{
@@ -312,17 +274,9 @@
     .side h2{ font-size: 18px; margin: 0 0 10px; letter-spacing: -0.2px; }
     .side p{ margin: 0 0 12px; color: var(--muted); font-size: 14px; line-height: 1.55; }
 
-    .cards{ display:grid; gap: 10px; margin-top: 14px; }
-    .card{
-      padding: 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.04);
-    }
-    .card strong{ display:block; margin-bottom: 4px; font-size: 14px; }
-    .card span{ display:block; color: var(--muted2); font-size: 12.5px; line-height: 1.45; }
-
-    .divider{ height: 1px; background: rgba(255,255,255,0.08); margin: 16px 0; }
+    .side .cards{ margin-top: 10px; gap: 10px; }
+    .side .card strong{ display:block; margin-bottom: 4px; font-size: 14px; }
+    .side .card span{ display:block; color: var(--muted2); font-size: 12.5px; line-height: 1.45; }
 
     .small-links a{
       color: rgba(230,240,255,0.86);
@@ -330,70 +284,66 @@
       border-bottom: 1px dashed rgba(230,240,255,0.30);
     }
     .small-links a:hover{ border-bottom-color: rgba(230,240,255,0.55); }
-
-    .footer-mini{
-      margin-top: 22px;
-      color: rgba(230,240,255,0.55);
-      font-size: 12px;
-      text-align:center;
-    }
   </style>
 </head>
 
 <body>
-  <main class="page">
-    <div class="wrap">
+<header class="navbar">
+  <div class="container nav-inner">
+    <div class="logo">
+      <img src="/camcleans-wordmark.svg" alt="CamCleans">
+    </div>
 
-      <div class="topbar">
-        <a class="brand" href="/">
-          <div class="mark" aria-hidden="true"></div>
-          <div>
-            <strong>CamCleans</strong><br />
-            <span style="font-size:12px; color: rgba(230,240,255,0.6);">Cleaning Checklist</span>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="#services">Services</a>
+      <a href="/about.html">About</a>
+      <a href="/pricing.html">Prices</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+
+    <a href="/contact.html" class="btn-primary nav-cta">Get Quote</a>
+  </div>
+</header>
+
+<main class="page">
+  <div class="wrap">
+    <div class="grid2">
+
+      <!-- LEFT -->
+      <section class="panel" aria-labelledby="checklist-title">
+        <div class="panel-header">
+          <div class="badge"><span class="dot" aria-hidden="true"></span> Scope-first. No ambiguity.</div>
+          <h1 id="checklist-title">Cleaning Checklist</h1>
+          <p class="lead">
+            This is what “good” looks like. If you want extra items included (inside appliances, heavy limescale, mould, etc.),
+            state it upfront so the scope and price stay aligned.
+          </p>
+
+          <div class="chips" aria-hidden="true">
+            <span class="chip">Defined scope</span>
+            <span class="chip">Optional add-ons</span>
+            <span class="chip">Quality-led</span>
+            <span class="chip">Nationwide UK</span>
           </div>
-        </a>
-
-        <div class="mini-links" aria-label="Quick links">
-          <a href="/services/regular-cleaning.html">Services</a>
-          <a href="/pricing.html">Pricing</a>
-          <a href="/faqs.html">FAQs</a>
-          <a href="/contact.html">Contact</a>
         </div>
-      </div>
 
-      <div class="grid2">
+        <!-- SERVICE PILLS (advice content) -->
+        <div class="tabs" role="tablist" aria-label="Checklist type">
+          <button class="tab" role="tab" aria-selected="true" aria-controls="tab-eot" id="btn-eot">End of Tenancy</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="tab-deep" id="btn-deep">Deep Clean</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="tab-regular" id="btn-regular">Regular Clean</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="tab-after" id="btn-after">After Builders</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="tab-office" id="btn-office">Office</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="tab-addons" id="btn-addons">Add-ons</button>
+        </div>
 
-        <!-- LEFT: Checklist -->
-        <section class="panel" aria-labelledby="checklist-title">
-          <div class="panel-header">
-            <div class="badge"><span class="dot" aria-hidden="true"></span> Scope-first. No ambiguity.</div>
-            <h1 id="checklist-title">Cleaning Checklist</h1>
-            <p class="lead">
-              This is what “good” looks like. If you want extra items included (inside appliances, heavy limescale, mould, etc.),
-              state it upfront so the scope and price stay aligned.
-            </p>
+        <div class="panel-body">
 
-            <div class="chips" aria-hidden="true">
-              <span class="chip">Defined scope</span>
-              <span class="chip">Optional add-ons</span>
-              <span class="chip">Quality-led</span>
-              <span class="chip">Nationwide UK</span>
-            </div>
-          </div>
-
-          <div class="panel-body">
-            <div class="tabs" role="tablist" aria-label="Service checklist tabs">
-              <button class="tabbtn active" type="button" data-tab="eot" role="tab" aria-selected="true">End of Tenancy</button>
-              <button class="tabbtn" type="button" data-tab="deep" role="tab" aria-selected="false">Deep Clean</button>
-              <button class="tabbtn" type="button" data-tab="regular" role="tab" aria-selected="false">Regular Clean</button>
-              <button class="tabbtn" type="button" data-tab="builders" role="tab" aria-selected="false">After Builders</button>
-              <button class="tabbtn" type="button" data-tab="office" role="tab" aria-selected="false">Office</button>
-              <button class="tabbtn" type="button" data-tab="add" role="tab" aria-selected="false">Add-ons</button>
-            </div>
-
-            <!-- End of Tenancy -->
-            <div class="checkgrid" data-pane="eot">
-              <div class="block">
+          <!-- End of Tenancy -->
+          <div id="tab-eot" role="tabpanel" aria-labelledby="btn-eot">
+            <div class="grid-cards">
+              <div class="card">
                 <h3>Kitchen</h3>
                 <ul>
                   <li>Degrease surfaces, backsplash, and worktops</li>
@@ -403,7 +353,7 @@
                   <li>Vacuum/mop floors and edge lines</li>
                 </ul>
               </div>
-              <div class="block">
+              <div class="card">
                 <h3>Bathrooms</h3>
                 <ul>
                   <li>Descale/sanitise shower, bath, sinks, taps</li>
@@ -413,8 +363,8 @@
                   <li>Vacuum/mop floors</li>
                 </ul>
               </div>
-              <div class="block">
-                <h3>Bedrooms & Living Areas</h3>
+              <div class="card">
+                <h3>Bedrooms &amp; Living Areas</h3>
                 <ul>
                   <li>Dust/wipe surfaces, skirting, reachable ledges</li>
                   <li>Clean light switches, door handles, touch points</li>
@@ -423,8 +373,8 @@
                   <li>Internal windows where safe/accessible</li>
                 </ul>
               </div>
-              <div class="block">
-                <h3>Hallways & Utility</h3>
+              <div class="card">
+                <h3>Hallways &amp; Utility</h3>
                 <ul>
                   <li>Vacuum/mop floors and stairs</li>
                   <li>Wipe bannisters/handrails where applicable</li>
@@ -435,9 +385,16 @@
               </div>
             </div>
 
-            <!-- Deep Clean -->
-            <div class="checkgrid" data-pane="deep" style="display:none;">
-              <div class="block">
+            <div class="callout">
+              <strong>Important:</strong> The checklist is a standard baseline. Real homes vary. If you have heavy limescale,
+              mould, pet hair, or neglected areas, the time and price will increase. Provide photos for bulletproof quoting.
+            </div>
+          </div>
+
+          <!-- Deep Clean -->
+          <div id="tab-deep" role="tabpanel" aria-labelledby="btn-deep" hidden>
+            <div class="grid-cards">
+              <div class="card">
                 <h3>Kitchen Deep</h3>
                 <ul>
                   <li>Thorough degrease of work areas and splash zones</li>
@@ -447,7 +404,7 @@
                   <li>Optional: inside cupboards/appliances (add-on)</li>
                 </ul>
               </div>
-              <div class="block">
+              <div class="card">
                 <h3>Bathroom Deep</h3>
                 <ul>
                   <li>Descale focus points (shower screen, tiles, taps)</li>
@@ -457,7 +414,7 @@
                   <li>Optional: mould treatment (assessment needed)</li>
                 </ul>
               </div>
-              <div class="block">
+              <div class="card">
                 <h3>Living Areas Deep</h3>
                 <ul>
                   <li>Dust and wipe all reachable surfaces</li>
@@ -467,7 +424,7 @@
                   <li>Optional: interior windows/blinds (add-on)</li>
                 </ul>
               </div>
-              <div class="block">
+              <div class="card">
                 <h3>Finish</h3>
                 <ul>
                   <li>Bin liners replaced (if provided)</li>
@@ -479,9 +436,16 @@
               </div>
             </div>
 
-            <!-- Regular Clean -->
-            <div class="checkgrid" data-pane="regular" style="display:none;">
-              <div class="block">
+            <div class="callout">
+              <strong>Important:</strong> Deep cleans vary massively. If there’s heavy grease, limescale, mould, pet hair,
+              or neglected rooms, time and price increase. Photos make pricing accurate.
+            </div>
+          </div>
+
+          <!-- Regular Clean -->
+          <div id="tab-regular" role="tabpanel" aria-labelledby="btn-regular" hidden>
+            <div class="grid-cards">
+              <div class="card">
                 <h3>Standard (Each Visit)</h3>
                 <ul>
                   <li>Vacuum and/or mop floors</li>
@@ -491,7 +455,7 @@
                   <li>Empty bins (if accessible)</li>
                 </ul>
               </div>
-              <div class="block">
+              <div class="card">
                 <h3>Rotation Items (As Needed)</h3>
                 <ul>
                   <li>Skirting boards (light)</li>
@@ -501,7 +465,7 @@
                   <li>Spot cleaning marks</li>
                 </ul>
               </div>
-              <div class="block">
+              <div class="card">
                 <h3>What Regular Does NOT Mean</h3>
                 <ul>
                   <li>No heavy limescale removal by default</li>
@@ -511,7 +475,7 @@
                   <li>No lifting heavy furniture alone</li>
                 </ul>
               </div>
-              <div class="block">
+              <div class="card">
                 <h3>Best Results</h3>
                 <ul>
                   <li>Keep clutter minimal on surfaces</li>
@@ -523,9 +487,16 @@
               </div>
             </div>
 
-            <!-- After Builders -->
-            <div class="checkgrid" data-pane="builders" style="display:none;">
-              <div class="block">
+            <div class="callout">
+              <strong>Important:</strong> Regular cleans assume a maintained home. If there’s heavy buildup, mould,
+              pet hair, or neglected areas, we’ll quote an upgrade (deep clean/reset) first.
+            </div>
+          </div>
+
+          <!-- After Builders -->
+          <div id="tab-after" role="tabpanel" aria-labelledby="btn-after" hidden>
+            <div class="grid-cards">
+              <div class="card">
                 <h3>Dust Removal</h3>
                 <ul>
                   <li>Fine dust removal from surfaces and ledges</li>
@@ -535,7 +506,7 @@
                   <li>Optional: multiple passes if heavy dust</li>
                 </ul>
               </div>
-              <div class="block">
+              <div class="card">
                 <h3>Kitchen/Bathroom Reset</h3>
                 <ul>
                   <li>Sanitise sinks, taps, and splash zones</li>
@@ -545,7 +516,7 @@
                   <li>Paint splatter removal assessed case-by-case</li>
                 </ul>
               </div>
-              <div class="block">
+              <div class="card">
                 <h3>Windows</h3>
                 <ul>
                   <li>Internal window clean where safe/accessible</li>
@@ -555,7 +526,7 @@
                   <li>Blinds are add-on</li>
                 </ul>
               </div>
-              <div class="block">
+              <div class="card">
                 <h3>Reality Check</h3>
                 <ul>
                   <li>Post-build sites vary massively</li>
@@ -567,9 +538,16 @@
               </div>
             </div>
 
-            <!-- Office -->
-            <div class="checkgrid" data-pane="office" style="display:none;">
-              <div class="block">
+            <div class="callout">
+              <strong>Important:</strong> If builders have left rubble, plaster, cement, or significant paint splatter,
+              it may require a specialist clean or extra time. Photos prevent surprises.
+            </div>
+          </div>
+
+          <!-- Office -->
+          <div id="tab-office" role="tabpanel" aria-labelledby="btn-office" hidden>
+            <div class="grid-cards">
+              <div class="card">
                 <h3>Work Areas</h3>
                 <ul>
                   <li>Dust/wipe desks (clear-surface basis)</li>
@@ -579,7 +557,7 @@
                   <li>Spot clean glass partitions (light)</li>
                 </ul>
               </div>
-              <div class="block">
+              <div class="card">
                 <h3>Kitchens/Break Areas</h3>
                 <ul>
                   <li>Wipe counters and tables</li>
@@ -589,7 +567,7 @@
                   <li>Sanitise high-touch areas</li>
                 </ul>
               </div>
-              <div class="block">
+              <div class="card">
                 <h3>Toilets</h3>
                 <ul>
                   <li>Toilets cleaned/sanitised</li>
@@ -599,7 +577,7 @@
                   <li>Report maintenance issues</li>
                 </ul>
               </div>
-              <div class="block">
+              <div class="card">
                 <h3>Commercial Notes</h3>
                 <ul>
                   <li>Frequency affects price (daily/weekly)</li>
@@ -611,173 +589,171 @@
               </div>
             </div>
 
-            <!-- Add-ons -->
-            <div class="checkgrid" data-pane="add" style="display:none;">
-              <div class="block">
-                <h3>Inside Appliances</h3>
-                <ul>
-                  <li>Oven internal clean (levels vary)</li>
-                  <li>Fridge internal clean</li>
-                  <li>Microwave internal clean</li>
-                  <li>Dishwasher filter/basic clean</li>
-                  <li>Washing machine drawer seal wipe</li>
-                </ul>
-              </div>
-              <div class="block">
-                <h3>Detail Extras</h3>
-                <ul>
-                  <li>Inside cupboards / drawers</li>
-                  <li>Internal windows + frames</li>
-                  <li>Blinds (dust + wipe)</li>
-                  <li>High-level dusting (safe access only)</li>
-                  <li>Balcony/patio quick sweep (light)</li>
-                </ul>
-              </div>
-              <div class="block">
-                <h3>Condition-Based</h3>
-                <ul>
-                  <li>Heavy limescale (requires time)</li>
-                  <li>Mould treatment (assessment needed)</li>
-                  <li>Nicotine staining (assessment needed)</li>
-                  <li>Pet hair heavy removal</li>
-                  <li>Severe neglect/heavy soil uplift</li>
-                </ul>
-              </div>
-              <div class="block">
-                <h3>Carpets</h3>
-                <ul>
-                  <li>Vacuum + spot treatment (standard)</li>
-                  <li>Machine extraction (service/add-on)</li>
-                  <li>Stain treatment (results vary)</li>
-                  <li>Drying time depends on airflow</li>
-                  <li>Photos help for stains/odours</li>
-                </ul>
-              </div>
+            <div class="callout">
+              <strong>Important:</strong> Commercial scope depends on occupancy and footfall. Provide square footage,
+              number of toilets, kitchen areas, and frequency for accurate pricing.
             </div>
-
-            <div class="note">
-              <strong>Important:</strong> The checklist is a standard baseline. Real homes vary. If you have heavy limescale, mould,
-              pet hair, or neglected areas, the time and price will increase. Provide photos for bulletproof quoting.
-            </div>
-
-            <div class="divider"></div>
-
-            <h2 style="margin:0 0 10px; font-size:18px;">Request a copy / ask a scope question</h2>
-            <p style="margin:0 0 14px; color: rgba(230,240,255,0.75); font-size:14px;">
-              Use this to request the checklist or confirm what’s included. This uses a “send by email” fallback until the final delivery is wired.
-            </p>
-
-            <form id="checklistForm" novalidate>
-              <div class="formgrid">
-
-                <div class="field">
-                  <label for="name">Full name *</label>
-                  <input id="name" name="name" type="text" autocomplete="name" placeholder="e.g. Jordan Smith" required />
-                </div>
-
-                <div class="field">
-                  <label for="email">Email *</label>
-                  <input id="email" name="email" type="email" autocomplete="email" placeholder="e.g. jordan@email.com" required />
-                </div>
-
-                <div class="field">
-                  <label for="service">Service *</label>
-                  <select id="service" name="service" required>
-                    <option value="" selected disabled>Select…</option>
-                    <option value="End of Tenancy">End of Tenancy</option>
-                    <option value="Deep Clean">Deep Clean</option>
-                    <option value="Regular Domestic">Regular Domestic</option>
-                    <option value="After Builders">After Builders</option>
-                    <option value="Office / Commercial">Office / Commercial</option>
-                    <option value="Carpet Cleaning">Carpet Cleaning</option>
-                  </select>
-                </div>
-
-                <div class="field">
-                  <label for="postcode">Postcode (recommended)</label>
-                  <input id="postcode" name="postcode" type="text" autocomplete="postal-code" placeholder="e.g. PO19 7TG" />
-                  <div class="hint">Needed for accurate routing and pricing context.</div>
-                </div>
-
-                <div class="field full">
-                  <label>What do you need?</label>
-                  <div class="checks" role="group" aria-label="Request type">
-                    <label class="check"><input type="checkbox" id="wantCopy" checked /> Send me the checklist copy</label>
-                    <label class="check"><input type="checkbox" id="needQuote" /> I want a quote</label>
-                    <label class="check"><input type="checkbox" id="scopeQuestion" /> I have a scope question</label>
-                    <label class="check"><input type="checkbox" id="havePhotos" /> I can provide photos</label>
-                  </div>
-                </div>
-
-                <div class="field full">
-                  <label for="message">Message *</label>
-                  <textarea id="message" name="message" placeholder="Be specific: what are you unsure about, what extras do you want included, and what condition issues exist?" required></textarea>
-                </div>
-
-                <div class="field full">
-                  <label class="check">
-                    <input type="checkbox" id="consent" required />
-                    I consent to being contacted about this request. *
-                  </label>
-                  <div class="hint">No spam. This is just to handle your enquiry.</div>
-                </div>
-
-              </div>
-
-              <div class="actions">
-                <button type="submit" class="btn btn-primary2">Send Request</button>
-                <button type="button" class="btn" id="saveBtn">Save Draft</button>
-                <button type="button" class="btn" id="clearBtn">Clear</button>
-              </div>
-
-              <div class="status" id="statusBox" role="status" aria-live="polite"></div>
-            </form>
-
           </div>
-        </section>
 
-        <!-- RIGHT: Quick routing -->
-        <aside class="panel">
-          <div class="side">
-            <h2>How to get a firm price</h2>
-            <p>Weak input = slow follow-up. Strong input = fast firm quote.</p>
-
-            <div class="cards">
+          <!-- Add-ons -->
+          <div id="tab-addons" role="tabpanel" aria-labelledby="btn-addons" hidden>
+            <div class="grid-cards">
               <div class="card">
-                <strong>Send basics</strong>
-                <span>Postcode, bedrooms, bathrooms, service type.</span>
+                <h3>Inside Appliances (Add-on)</h3>
+                <ul>
+                  <li>Oven internal clean (degrease + detail)</li>
+                  <li>Fridge internal wipe (empty required)</li>
+                  <li>Microwave internal wipe</li>
+                  <li>Dishwasher filter wipe (light)</li>
+                  <li>Prices depend on condition</li>
+                </ul>
               </div>
               <div class="card">
-                <strong>Call out problems</strong>
-                <span>Heavy limescale, mould, pet hair, neglected rooms.</span>
+                <h3>Heavy Limescale / Mould</h3>
+                <ul>
+                  <li>Assessment required before confirming</li>
+                  <li>May need specialist chemicals/time</li>
+                  <li>Some mould is treatment + prevention advice</li>
+                  <li>Ventilation/moisture source matters</li>
+                  <li>Photos required</li>
+                </ul>
               </div>
               <div class="card">
-                <strong>Photos win</strong>
-                <span>If you can send photos, your quote becomes accurate immediately.</span>
+                <h3>Carpets / Upholstery</h3>
+                <ul>
+                  <li>Spot treatment where possible</li>
+                  <li>Extraction/steam depends on fibres</li>
+                  <li>Stain removal not guaranteed</li>
+                  <li>Drying time varies</li>
+                  <li>Quoted separately</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Declutter / Support</h3>
+                <ul>
+                  <li>Sorting + bagging support (no removals)</li>
+                  <li>Cleaner access improves results</li>
+                  <li>Time-based add-on</li>
+                  <li>Consent/decisions stay with client</li>
+                  <li>Ideal before deep/reset cleans</li>
+                </ul>
               </div>
             </div>
 
-            <div class="divider"></div>
-
-            <h2>Direct contact</h2>
-            <p class="small-links" style="margin:0;">
-              <a href="mailto:hello@camcleans.co.uk?subject=CamCleans%20Checklist%20Request">hello@camcleans.co.uk</a>
-            </p>
-
-            <div class="divider"></div>
-
-            <p class="small-links" style="margin:0;">
-              Prefer a structured quote form? <a href="/contact.html">Go to Contact</a>.
-            </p>
+            <div class="callout">
+              <strong>Important:</strong> Add-ons are where scope creep happens. State them upfront so quote and expectations match.
+            </div>
           </div>
-        </aside>
+
+          <div class="divider"></div>
+
+          <h2 style="margin:0 0 6px; font-size:22px; letter-spacing:-0.2px;">Request a copy / ask a scope question</h2>
+          <p class="lead" style="max-width: 80ch;">
+            Use this to request the checklist or confirm what’s included. This uses a “send by email” fallback until the final delivery is wired.
+          </p>
+
+          <form id="checklistForm" novalidate>
+            <div class="grid">
+              <div class="field">
+                <label for="fullName">Full name *</label>
+                <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="e.g. Jordan Smith" required />
+              </div>
+
+              <div class="field">
+                <label for="email">Email *</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="e.g. jordan@email.com" required />
+              </div>
+
+              <div class="field">
+                <label for="service">Service *</label>
+                <select id="service" name="service" required>
+                  <option value="" selected disabled>Select…</option>
+                  <option value="End of Tenancy">End of Tenancy</option>
+                  <option value="Deep Clean">Deep Clean</option>
+                  <option value="Regular Clean">Regular Clean</option>
+                  <option value="After Builders">After Builders</option>
+                  <option value="Office">Office</option>
+                  <option value="Add-ons">Add-ons</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="postcode">Postcode (recommended)</label>
+                <input id="postcode" name="postcode" type="text" autocomplete="postal-code" placeholder="e.g. B5 4BU" />
+                <div class="hint">Needed for accurate routing and pricing context.</div>
+              </div>
+
+              <div class="field full">
+                <label>What do you need?</label>
+                <div class="checks" role="group" aria-label="Request type">
+                  <label class="check"><input type="checkbox" id="reqCopy" /> Send me the checklist copy</label>
+                  <label class="check"><input type="checkbox" id="reqQuote" /> I want a quote</label>
+                  <label class="check"><input type="checkbox" id="reqScope" /> I have a scope question</label>
+                  <label class="check"><input type="checkbox" id="reqPhotos" /> I can provide photos</label>
+                </div>
+              </div>
+
+              <div class="field full">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" placeholder="Be specific: what are you unsure about, what extras do you want included, and what condition issues exist?" required></textarea>
+              </div>
+
+              <div class="field full">
+                <label class="check">
+                  <input type="checkbox" id="consent" required />
+                  I consent to being contacted about this request. *
+                </label>
+                <div class="hint">No spam. This is just to handle your enquiry.</div>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button type="submit" class="btn btn-primary2">Send Request</button>
+              <button type="button" class="btn" id="saveBtn">Save Draft</button>
+              <button type="button" class="btn" id="clearBtn">Clear</button>
+            </div>
+
+            <div class="status" id="statusBox" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- RIGHT -->
+      <aside class="panel">
+        <div class="side">
+          <h2>How to get a firm price</h2>
+          <p>Weak input = slow follow-up. Strong input = fast firm quote.</p>
+
+          <div class="cards">
+            <div class="card">
+              <strong>Send basics</strong>
+              <span>Postcode, bedrooms, bathrooms, service type.</span>
+            </div>
+            <div class="card">
+              <strong>Call out problems</strong>
+              <span>Heavy limescale, mould, pet hair, neglected rooms.</span>
+            </div>
+            <div class="card">
+              <strong>Photos win</strong>
+              <span>If you can send photos, your quote becomes accurate immediately.</span>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <h2>Direct contact</h2>
+          <p class="small-links" style="margin:0;">
+            <a href="mailto:hello@camcleans.co.uk?subject=Checklist%20Request">hello@camcleans.co.uk</a>
+          </p>
+          <p class="small-links" style="margin:10px 0 0;">
+            Prefer a structured quote form? <a href="/contact.html">Go to Contact.</a>
+          </p>
+        </div>
+      </aside>
 
     </div>
-
   </div>
 </main>
-
-<!-- FOOTER MUST BE OUTSIDE MAIN -->
 
 <footer>
   <div class="container footer-grid">
@@ -824,6 +800,138 @@
     © 2026 CamCleans Services Ltd. All rights reserved.
   </div>
 </footer>
+
+<script>
+  // Tabs (service pills) logic — keeps the advice content working
+  (function(){
+    const tabs = [
+      {btn:"btn-eot", panel:"tab-eot"},
+      {btn:"btn-deep", panel:"tab-deep"},
+      {btn:"btn-regular", panel:"tab-regular"},
+      {btn:"btn-after", panel:"tab-after"},
+      {btn:"btn-office", panel:"tab-office"},
+      {btn:"btn-addons", panel:"tab-addons"},
+    ];
+
+    function setActive(activeBtnId){
+      tabs.forEach(({btn, panel}) => {
+        const b = document.getElementById(btn);
+        const p = document.getElementById(panel);
+        const on = (btn === activeBtnId);
+        if (b) b.setAttribute("aria-selected", on ? "true" : "false");
+        if (p) p.hidden = !on;
+      });
+    }
+
+    tabs.forEach(({btn}) => {
+      const b = document.getElementById(btn);
+      if (!b) return;
+      b.addEventListener("click", () => setActive(btn));
+    });
+  })();
+
+  // Simple draft/save/clear + send-by-email fallback (same pattern as other pages)
+  (function(){
+    const form = document.getElementById("checklistForm");
+    const statusBox = document.getElementById("statusBox");
+    const saveBtn = document.getElementById("saveBtn");
+    const clearBtn = document.getElementById("clearBtn");
+
+    function showStatus(msg, kind){
+      if (!statusBox) return;
+      statusBox.className = "status show " + (kind || "");
+      statusBox.textContent = msg;
+    }
+
+    function getFormData(){
+      const data = {
+        fullName: (document.getElementById("fullName")||{}).value || "",
+        email: (document.getElementById("email")||{}).value || "",
+        service: (document.getElementById("service")||{}).value || "",
+        postcode: (document.getElementById("postcode")||{}).value || "",
+        message: (document.getElementById("message")||{}).value || "",
+        reqCopy: !!(document.getElementById("reqCopy")||{}).checked,
+        reqQuote: !!(document.getElementById("reqQuote")||{}).checked,
+        reqScope: !!(document.getElementById("reqScope")||{}).checked,
+        reqPhotos: !!(document.getElementById("reqPhotos")||{}).checked,
+      };
+      return data;
+    }
+
+    function setFormData(data){
+      if (!data) return;
+      (document.getElementById("fullName")||{}).value = data.fullName || "";
+      (document.getElementById("email")||{}).value = data.email || "";
+      (document.getElementById("service")||{}).value = data.service || "";
+      (document.getElementById("postcode")||{}).value = data.postcode || "";
+      (document.getElementById("message")||{}).value = data.message || "";
+      (document.getElementById("reqCopy")||{}).checked = !!data.reqCopy;
+      (document.getElementById("reqQuote")||{}).checked = !!data.reqQuote;
+      (document.getElementById("reqScope")||{}).checked = !!data.reqScope;
+      (document.getElementById("reqPhotos")||{}).checked = !!data.reqPhotos;
+    }
+
+    try{
+      const saved = localStorage.getItem("camcleans_checklist_draft");
+      if (saved) setFormData(JSON.parse(saved));
+    }catch(e){}
+
+    if (saveBtn){
+      saveBtn.addEventListener("click", () => {
+        try{
+          localStorage.setItem("camcleans_checklist_draft", JSON.stringify(getFormData()));
+          showStatus("Draft saved on this device.", "good");
+        }catch(e){
+          showStatus("Could not save draft in this browser.", "warn");
+        }
+      });
+    }
+
+    if (clearBtn){
+      clearBtn.addEventListener("click", () => {
+        if (form) form.reset();
+        try{ localStorage.removeItem("camcleans_checklist_draft"); }catch(e){}
+        showStatus("Cleared.", "warn");
+      });
+    }
+
+    if (form){
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const consent = document.getElementById("consent");
+        if (!consent || !consent.checked){
+          showStatus("Consent is required.", "bad");
+          return;
+        }
+
+        if (!form.checkValidity()){
+          showStatus("Please fill the required fields.", "bad");
+          return;
+        }
+
+        const d = getFormData();
+        const subject = encodeURIComponent("CamCleans Checklist / Scope Request");
+        const body = encodeURIComponent(
+          `Name: ${d.fullName}\n` +
+          `Email: ${d.email}\n` +
+          `Service: ${d.service}\n` +
+          `Postcode: ${d.postcode}\n` +
+          `Request: ${[
+            d.reqCopy ? "Checklist copy" : null,
+            d.reqQuote ? "Quote" : null,
+            d.reqScope ? "Scope question" : null,
+            d.reqPhotos ? "Can provide photos" : null
+          ].filter(Boolean).join(", ") || "Not specified"}\n\n` +
+          `Message:\n${d.message}\n`
+        );
+
+        window.location.href = `mailto:hello@camcleans.co.uk?subject=${subject}&body=${body}`;
+        showStatus("Opening your email app…", "good");
+      });
+    }
+  })();
+</script>
 
 </body>
 </html>
