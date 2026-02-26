@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About CamCleans | Nationwide Cleaning</title>
-  <meta name="description" content="About CamCleans — nationwide UK cleaning network with clear scopes, quality standards, and fast booking support." />
+  <title>About | CamCleans Nationwide Cleaning</title>
+  <meta name="description" content="About CamCleans — nationwide UK cleaning network with clear scopes, defined standards, and fast booking support." />
   <link rel="stylesheet" href="styles.css" />
 
   <style>
@@ -13,10 +13,6 @@
       --panel2: rgba(255,255,255,0.04);
       --stroke: rgba(255,255,255,0.12);
       --muted: rgba(230,240,255,0.75);
-      --muted2: rgba(230,240,255,0.6);
-      --good: rgba(64,255,170,0.18);
-      --warn: rgba(255,200,80,0.18);
-      --bad: rgba(255,80,110,0.18);
       --shadow: 0 24px 80px rgba(0,0,0,0.55);
       --radius: 18px;
     }
@@ -26,65 +22,18 @@
       background:
         radial-gradient(1200px 800px at 18% 10%, rgba(60,120,255,0.22), transparent 55%),
         radial-gradient(900px 700px at 82% 26%, rgba(120,70,255,0.18), transparent 55%),
-        radial-gradient(1100px 700px at 50% 92%, rgba(40,220,255,0.12), transparent 55%),
         #0b0f19;
     }
 
     .page{ padding: 86px 0 64px; }
-    .wrap{ width: 92%; max-width: 1160px; margin: 0 auto; }
-
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 14px;
-      padding: 14px 0 18px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      text-decoration:none;
-      color: inherit;
-    }
-
-    .mark{
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background:
-        radial-gradient(20px 20px at 30% 30%, rgba(255,255,255,0.35), transparent 60%),
-        linear-gradient(135deg, rgba(60,120,255,0.85), rgba(120,70,255,0.75));
-      box-shadow: 0 12px 32px rgba(0,0,0,0.45);
-      border: 1px solid rgba(255,255,255,0.16);
-    }
-
-    .brand strong{ font-weight: 800; letter-spacing: 0.2px; }
-
-    .mini-links{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content:flex-end;
-    }
-    .mini-links a{
-      font-size: 14px;
-      color: var(--muted);
-      text-decoration:none;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.04);
-    }
-    .mini-links a:hover{ border-color: rgba(255,255,255,0.18); color: rgba(230,240,255,0.92); }
+    .wrap{ width: 92%; max-width: 1320px; margin: 0 auto; }
 
     .grid2{
       display:grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 18px;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
       align-items:start;
-      margin-top: 10px;
+      margin-top: 20px;
     }
     @media (max-width: 900px){ .grid2{ grid-template-columns: 1fr; } }
 
@@ -97,537 +46,196 @@
     }
 
     .panel-header{
-      padding: 22px 22px 16px;
+      padding: 28px 28px 20px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
-      background:
-        radial-gradient(700px 220px at 20% 0%, rgba(60,120,255,0.22), transparent 55%),
-        radial-gradient(600px 220px at 80% 0%, rgba(120,70,255,0.16), transparent 55%);
-    }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.06);
-      color: rgba(230,240,255,0.92);
-      font-size: 13px;
-      letter-spacing: 0.2px;
-      margin-bottom: 12px;
-    }
-    .badge .dot{
-      width: 8px; height: 8px; border-radius: 999px;
-      background: rgba(40,220,255,0.95);
-      box-shadow: 0 0 18px rgba(40,220,255,0.35);
     }
 
     h1{
-      font-size: clamp(28px, 4vw, 40px);
-      line-height: 1.12;
-      margin: 0 0 10px;
-      letter-spacing: -0.4px;
+      font-size: 42px;
+      line-height: 1.15;
+      margin: 0 0 12px;
+      letter-spacing: -0.5px;
     }
-    .lead{ color: var(--muted); margin: 0; max-width: 72ch; }
 
-    .panel-body{ padding: 18px 22px 22px; }
+    .lead{
+      color: var(--muted);
+      max-width: 70ch;
+      margin: 0;
+    }
+
+    .panel-body{ padding: 22px 28px 28px; }
 
     .cards{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 14px;
+      gap: 16px;
+      margin-top: 16px;
     }
     @media (max-width: 720px){ .cards{ grid-template-columns: 1fr; } }
 
     .card{
-      padding: 14px;
+      padding: 16px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.04);
+      transition: 0.15s ease;
     }
-    .card strong{ display:block; margin-bottom: 6px; font-size: 14px; }
-    .card p{ margin:0; color: rgba(230,240,255,0.78); font-size: 13.5px; line-height: 1.55; }
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+    }
+    .card strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:15px;
+    }
+    .card p{
+      margin:0;
+      font-size:14px;
+      line-height:1.55;
+      color:rgba(230,240,255,0.80);
+    }
 
-    .divider{ height: 1px; background: rgba(255,255,255,0.08); margin: 16px 0; }
+    .divider{
+      height:1px;
+      background:rgba(255,255,255,0.08);
+      margin:24px 0;
+    }
 
     .bullets{
-      margin: 0;
-      padding-left: 18px;
-      color: rgba(230,240,255,0.80);
-      font-size: 14px;
-      line-height: 1.6;
+      margin:0;
+      padding-left:20px;
+      font-size:14px;
+      line-height:1.6;
+      color:rgba(230,240,255,0.85);
     }
-    .bullets li{ margin: 6px 0; }
 
-    /* form */
-    form{ margin-top: 6px; }
-    .formgrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    @media (max-width: 720px){ .formgrid{ grid-template-columns: 1fr; } }
-
-    .field{ display:flex; flex-direction:column; gap: 7px; }
-    label{ font-size: 13px; color: rgba(230,240,255,0.88); letter-spacing: 0.1px; }
-    .hint{ font-size: 12px; color: var(--muted2); margin-top: -4px; }
-
-    input, select, textarea{
-      width: 100%;
-      padding: 12px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(10,14,25,0.55);
-      color: rgba(230,240,255,0.95);
-      outline: none;
-      transition: border-color .15s ease, box-shadow .15s ease, transform .05s ease;
-      font: inherit;
-    }
-    input::placeholder, textarea::placeholder{ color: rgba(230,240,255,0.45); }
-    input:focus, select:focus, textarea:focus{
-      border-color: rgba(140,170,255,0.55);
-      box-shadow: 0 0 0 4px rgba(80,130,255,0.14);
-    }
-    textarea{ min-height: 128px; resize: vertical; }
-    .full{ grid-column: 1 / -1; }
-
-    .checks{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px 12px;
-      padding: 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.04);
-    }
-    @media (max-width: 720px){ .checks{ grid-template-columns: 1fr; } }
-    .check{
-      display:flex;
-      gap: 10px;
-      align-items:flex-start;
-      color: rgba(230,240,255,0.86);
-      font-size: 13px;
-      line-height: 1.35;
-    }
-    .check input{ width:auto; margin-top: 2px; }
-
-    .actions{
-      display:flex;
-      gap: 12px;
-      flex-wrap:wrap;
-      align-items:center;
-      margin-top: 14px;
-    }
     .btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap: 10px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.06);
-      color: rgba(230,240,255,0.95);
-      text-decoration:none;
-      cursor:pointer;
-      user-select:none;
-    }
-    .btn:hover{ border-color: rgba(255,255,255,0.20); }
-    .btn:active{ transform: translateY(1px); }
-    .btn-primary2{
-      border: 1px solid rgba(160,190,255,0.22);
+      padding:14px 18px;
+      border-radius:12px;
+      border:1px solid rgba(160,190,255,0.25);
       background:
         radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,0.25), transparent 60%),
         linear-gradient(135deg, rgba(60,120,255,0.92), rgba(120,70,255,0.85));
-      box-shadow: 0 14px 42px rgba(0,0,0,0.45);
-    }
-
-    .status{
-      margin-top: 12px;
-      padding: 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.04);
-      color: rgba(230,240,255,0.92);
-      display:none;
-    }
-    .status.show{ display:block; }
-    .status.good{ border-color: rgba(64,255,170,0.24); background: var(--good); }
-    .status.warn{ border-color: rgba(255,200,80,0.22); background: var(--warn); }
-    .status.bad{ border-color: rgba(255,80,110,0.22); background: var(--bad); }
-
-    /* right side */
-    .side{ padding: 20px 20px 16px; }
-    .side h2{ font-size: 18px; margin: 0 0 10px; letter-spacing: -0.2px; }
-    .side p{ margin: 0 0 12px; color: var(--muted); font-size: 14px; line-height: 1.55; }
-
-    .pillrow{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 10px; }
-    .pill{
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.05);
-      color: rgba(230,240,255,0.88);
-      font-size: 13px;
-    }
-
-    .small-links a{
-      color: rgba(230,240,255,0.86);
+      box-shadow: 0 16px 42px rgba(0,0,0,0.45);
+      color:#fff;
       text-decoration:none;
-      border-bottom: 1px dashed rgba(230,240,255,0.30);
+      font-weight:600;
+      transition:0.2s ease;
     }
-    .small-links a:hover{ border-bottom-color: rgba(230,240,255,0.55); }
+    .btn:hover{
+      box-shadow: 0 0 18px rgba(72,130,255,0.45);
+      transform:translateY(-1px);
+    }
+
+    .side{
+      padding:26px;
+    }
+    .side h2{
+      font-size:20px;
+      margin:0 0 12px;
+    }
+    .side p{
+      margin:0 0 14px;
+      font-size:14px;
+      color:rgba(230,240,255,0.75);
+      line-height:1.6;
+    }
 
     .footer-mini{
-      margin-top: 22px;
-      color: rgba(230,240,255,0.55);
-      font-size: 12px;
+      margin-top:28px;
+      color:rgba(230,240,255,0.55);
+      font-size:12px;
       text-align:center;
     }
   </style>
 </head>
 
 <body>
-  <header class="navbar">
+
+<header class="navbar">
   <div class="container nav-inner">
     <div class="logo">
-  <img src="/camcleans-wordmark.svg" alt="CamCleans">
-</div>
-
+      <img src="/camcleans-wordmark.svg" alt="CamCleans">
+    </div>
     <nav class="nav-links">
       <a href="/">Home</a>
-      <a href="#services">Services</a>
+      <a href="/services/regular-cleaning.html">Services</a>
       <a href="/about.html">About</a>
       <a href="/pricing.html">Prices</a>
       <a href="/contact.html">Contact</a>
     </nav>
-
     <a href="/contact.html" class="btn-primary nav-cta">Get Quote</a>
   </div>
-</header><main class="page">
-    <div class="wrap">
+</header>
 
-      <div class="topbar">
-        <a class="brand" href="/">
-          <div class="mark" aria-hidden="true"></div>
-          <div>
-            <img src="/camcleans-wordmark.svg" alt="CamCleans" style="height:28px;"><br />
-            <span style="font-size:12px; color: rgba(230,240,255,0.6);">About</span>
-          </div>
-        </a>
+<main class="page">
+  <div class="wrap">
 
-        <div class="mini-links" aria-label="Quick links">
-          <a href="/">Home</a>
-          <a href="/pricing.html">Prices</a>
-          <a href="/services/regular-cleaning.html">Services</a>
-          <a href="/contact.html">Contact</a>
+    <div class="grid2">
+
+      <section class="panel">
+        <div class="panel-header">
+          <h1>About</h1>
+          <p class="lead">
+            CamCleans is a nationwide UK cleaning network built around clarity, defined scope, and measurable standards.
+          </p>
         </div>
-      </div>
 
-      <div class="grid2">
+        <div class="panel-body">
 
-        <!-- LEFT: About content + enquiry form -->
-        <section class="panel" aria-labelledby="about-title">
-          <div class="panel-header">
-            <div class="badge"><span class="dot" aria-hidden="true"></span> Nationwide UK cleaning — built for reliability</div>
-            <h1 id="about-title">About CamCleans</h1>
-            <p class="lead">
-              CamCleans is a nationwide cleaning network focused on predictable results: clear scopes, clean communication, and quality you can measure.
-            </p>
-          </div>
-
-          <div class="panel-body">
-            <div class="cards">
-              <div class="card">
-                <strong>What we do</strong>
-                <p>We match customers to vetted cleaning professionals for domestic and commercial jobs, with consistent scope and quality expectations.</p>
-              </div>
-              <div class="card">
-                <strong>What we don’t do</strong>
-                <p>No vague “we’ll see on the day”. If the condition is heavier than described, we re-scope before proceeding.</p>
-              </div>
-              <div class="card">
-                <strong>How quoting works</strong>
-                <p>Price is driven by service type, size, condition, and access/time constraints. Photos = faster, firmer quotes.</p>
-              </div>
-              <div class="card">
-                <strong>Quality standard</strong>
-                <p>Defined checklist expectations. If you want extras (inside appliances, heavy limescale, mould), declare it upfront.</p>
-              </div>
+          <div class="cards">
+            <div class="card">
+              <strong>Defined scope</strong>
+              <p>No vague “we’ll see on the day”. If the condition is heavier than declared, we re-scope before proceeding.</p>
             </div>
-
-            <div class="divider"></div>
-
-            <h2 style="margin:0 0 10px; font-size:18px;">Core principles</h2>
-            <ul class="bullets">
-              <li><strong>Scope first</strong>: no surprises, no silent exclusions.</li>
-              <li><strong>Fast routing</strong>: postcode + job type determines availability.</li>
-              <li><strong>Quality-led</strong>: checklists and touch-point standards.</li>
-              <li><strong>Honest constraints</strong>: heavy soil, mould, or neglect changes time and price.</li>
-            </ul>
-
-            <div class="divider"></div>
-
-            <h2 style="margin:0 0 10px; font-size:18px;">Send an enquiry (fast routing)</h2>
-            <p style="margin:0 0 14px; color: rgba(230,240,255,0.75); font-size:14px;">
-              This uses a “send by email” fallback until the final delivery address is confirmed. Your message is structured so it’s actionable immediately.
-            </p>
-
-            <form id="aboutForm" novalidate>
-              <div class="formgrid">
-
-                <div class="field">
-                  <label for="name">Full name *</label>
-                  <input id="name" name="name" type="text" autocomplete="name" placeholder="e.g. Taylor Green" required />
-                </div>
-
-                <div class="field">
-                  <label for="email">Email *</label>
-                  <input id="email" name="email" type="email" autocomplete="email" placeholder="e.g. taylor@email.com" required />
-                </div>
-
-                <div class="field">
-                  <label for="enquiryType">Enquiry type *</label>
-                  <select id="enquiryType" name="enquiryType" required>
-                    <option value="" selected disabled>Select…</option>
-                    <option value="Get a quote">Get a quote</option>
-                    <option value="Book a clean">Book a clean</option>
-                    <option value="Business / partnership">Business / partnership</option>
-                    <option value="Press / media">Press / media</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-
-                <div class="field">
-                  <label for="postcode">Postcode (recommended)</label>
-                  <input id="postcode" name="postcode" type="text" autocomplete="postal-code" placeholder="e.g. PO19 7TG" />
-                  <div class="hint">If you want availability, this matters.</div>
-                </div>
-
-                <div class="field full">
-                  <label>Context (optional)</label>
-                  <div class="checks" role="group" aria-label="Context">
-                    <label class="check"><input type="checkbox" id="isUrgent" /> Urgent (next 72 hours)</label>
-                    <label class="check"><input type="checkbox" id="hasPhotos" /> I can provide photos</label>
-                    <label class="check"><input type="checkbox" id="isCommercial" /> Commercial premises</label>
-                    <label class="check"><input type="checkbox" id="needsCallBack" /> I want a call-back</label>
-                  </div>
-                </div>
-
-                <div class="field full">
-                  <label for="message">Message *</label>
-                  <textarea id="message" name="message" placeholder="Be direct. What’s the job, where is it, when do you need it, and what condition issues exist?" required></textarea>
-                </div>
-
-                <div class="field full">
-                  <label class="check">
-                    <input type="checkbox" id="consent" required />
-                    I consent to being contacted about this enquiry. *
-                  </label>
-                  <div class="hint">This page uses a “send by email” fallback until final delivery wiring is set.</div>
-                </div>
-
-              </div>
-
-              <div class="actions">
-                <button type="submit" class="btn btn-primary2">Send Enquiry</button>
-                <button type="button" class="btn" id="saveBtn">Save Draft</button>
-                <button type="button" class="btn" id="clearBtn">Clear</button>
-              </div>
-
-              <div class="status" id="statusBox" role="status" aria-live="polite"></div>
-            </form>
-
-          </div>
-        </section>
-
-        <!-- RIGHT: positioning -->
-        <aside class="panel">
-          <div class="side">
-            <h2>What makes this work</h2>
-            <p>You only get “elite” outcomes if the process is tight. This is how CamCleans enforces that standard.</p>
-
-            <div class="pillrow" aria-hidden="true">
-              <span class="pill">Defined checklists</span>
-              <span class="pill">Clear add-ons</span>
-              <span class="pill">Fast routing</span>
-              <span class="pill">No scope drift</span>
+            <div class="card">
+              <strong>Fast routing</strong>
+              <p>Postcode + job type determines availability. Structured intake reduces back-and-forth.</p>
             </div>
-
-            <div class="divider"></div>
-
-            <h2>Fast links</h2>
-            <p class="small-links" style="margin:0 0 10px;">
-              <a href="/contact.html">Contact / Quote</a>
-            </p>
-            <p class="small-links" style="margin:0 0 10px;">
-              <a href="/cleaning-checklist.html">Cleaning Checklist</a>
-            </p>
-            <p class="small-links" style="margin:0;">
-              <a href="/faqs.html">FAQs</a>
-            </p>
-
-            <div class="divider"></div>
-
-            <h2>Direct email</h2>
-            <p class="small-links" style="margin:0;">
-              <a href="mailto:hello@camcleans.co.uk?subject=CamCleans%20Enquiry%20(About)">hello@camcleans.co.uk</a>
-            </p>
-
-            <p style="margin-top:10px; color: rgba(230,240,255,0.6); font-size: 12.5px;">
-              If you want speed: include postcode + service + urgency + photos (if possible).
-            </p>
+            <div class="card">
+              <strong>Checklist standards</strong>
+              <p>Clear deliverables for each service type. Add-ons declared upfront.</p>
+            </div>
+            <div class="card">
+              <strong>Honest constraints</strong>
+              <p>Heavy soil, mould, or neglect changes time and price. Transparency protects everyone.</p>
+            </div>
           </div>
-        </aside>
 
-      </div>
+          <div class="divider"></div>
 
-      <div class="footer-mini">© 2026 CamCleans Services Ltd. All rights reserved.</div>
+          <ul class="bullets">
+            <li><strong>Quality-led:</strong> outcomes measured against defined standards.</li>
+            <li><strong>Structured quoting:</strong> service, size, condition, urgency.</li>
+            <li><strong>Nationwide coverage:</strong> UK postcode-based routing.</li>
+          </ul>
+
+          <div class="divider"></div>
+
+          <a href="/contact.html" class="btn">Get Quote</a>
+
+        </div>
+      </section>
+
+      <aside class="panel">
+        <div class="side">
+          <h2>What this means for you</h2>
+          <p>Less ambiguity. Faster response. Fewer surprises.</p>
+          <p>If you want speed: include postcode, service type, urgency, and photos.</p>
+          <p>Email: <a href="mailto:hello@camcleans.co.uk" style="color:#fff;">hello@camcleans.co.uk</a></p>
+        </div>
+      </aside>
 
     </div>
-  </main>
 
-  <script>
-    (function () {
-      const form = document.getElementById("aboutForm");
-      const statusBox = document.getElementById("statusBox");
-      const saveBtn = document.getElementById("saveBtn");
-      const clearBtn = document.getElementById("clearBtn");
+    <div class="footer-mini">© 2026 CamCleans Services Ltd. All rights reserved.</div>
 
-      // Change later to final receiving address
-      const DEST_EMAIL = "hello@camcleans.co.uk";
-      const STORAGE_KEY = "camcleans_about_draft_v1";
+  </div>
+</main>
 
-      function showStatus(type, msg) {
-        statusBox.className = "status show " + type;
-        statusBox.textContent = msg;
-      }
-      function hideStatus() {
-        statusBox.className = "status";
-        statusBox.textContent = "";
-      }
-
-      function looksLikePostcode(s) {
-        const v = (s || "").trim().toUpperCase();
-        if (!v) return true; // optional here
-        return /^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/.test(v);
-      }
-
-      function serialize() {
-        return {
-          name: form.name.value.trim(),
-          email: form.email.value.trim(),
-          enquiryType: form.enquiryType.value,
-          postcode: form.postcode.value.trim(),
-          isUrgent: document.getElementById("isUrgent").checked,
-          hasPhotos: document.getElementById("hasPhotos").checked,
-          isCommercial: document.getElementById("isCommercial").checked,
-          needsCallBack: document.getElementById("needsCallBack").checked,
-          message: form.message.value.trim(),
-          consent: document.getElementById("consent").checked,
-          submittedAt: new Date().toISOString()
-        };
-      }
-
-      function buildEmailBody(d) {
-        const lines = [
-          "ENQUIRY (About page) - CamCleans",
-          "--------------------------------",
-          "Name: " + d.name,
-          "Email: " + d.email,
-          "Enquiry type: " + d.enquiryType,
-          "Postcode: " + (d.postcode || "—"),
-          "",
-          "Context:",
-          "- Urgent (72h): " + (d.isUrgent ? "Yes" : "No"),
-          "- Photos available: " + (d.hasPhotos ? "Yes" : "No"),
-          "- Commercial premises: " + (d.isCommercial ? "Yes" : "No"),
-          "- Wants call-back: " + (d.needsCallBack ? "Yes" : "No"),
-          "",
-          "Message:",
-          d.message || "—",
-          "",
-          "Submitted: " + d.submittedAt
-        ];
-        return lines.join("\n");
-      }
-
-      function loadDraft() {
-        try {
-          const raw = localStorage.getItem(STORAGE_KEY);
-          if (!raw) return;
-          const d = JSON.parse(raw);
-
-          form.name.value = d.name || "";
-          form.email.value = d.email || "";
-          if (d.enquiryType) form.enquiryType.value = d.enquiryType;
-          form.postcode.value = d.postcode || "";
-
-          document.getElementById("isUrgent").checked = !!d.isUrgent;
-          document.getElementById("hasPhotos").checked = !!d.hasPhotos;
-          document.getElementById("isCommercial").checked = !!d.isCommercial;
-          document.getElementById("needsCallBack").checked = !!d.needsCallBack;
-
-          form.message.value = d.message || "";
-          document.getElementById("consent").checked = !!d.consent;
-
-          showStatus("warn", "Draft loaded from this device.");
-        } catch (e) {}
-      }
-
-      function saveDraft() {
-        try {
-          const data = serialize();
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-          showStatus("warn", "Draft saved on this device.");
-        } catch (e) {
-          showStatus("bad", "Could not save draft.");
-        }
-      }
-
-      function clearAll() {
-        form.reset();
-        localStorage.removeItem(STORAGE_KEY);
-        hideStatus();
-        showStatus("warn", "Cleared.");
-      }
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        hideStatus();
-
-        if (!form.checkValidity()) {
-          showStatus("bad", "Fix the highlighted fields and try again.");
-          form.reportValidity();
-          return;
-        }
-
-        const pc = form.postcode.value.trim();
-        if (!looksLikePostcode(pc)) {
-          showStatus("bad", "Postcode looks wrong. Example format: PO19 7TG.");
-          return;
-        }
-
-        const data = serialize();
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-
-        const subject = encodeURIComponent("CamCleans Enquiry (About) - " + data.enquiryType + (data.postcode ? " (" + data.postcode.toUpperCase() + ")" : ""));
-        const body = encodeURIComponent(buildEmailBody(data));
-        const mailto = "mailto:" + encodeURIComponent(DEST_EMAIL) + "?subject=" + subject + "&body=" + body;
-
-        showStatus("good", "Enquiry prepared. Your email client will open to send it now.");
-
-        setTimeout(() => {
-          window.location.href = mailto;
-        }, 350);
-      });
-
-      saveBtn.addEventListener("click", saveDraft);
-      clearBtn.addEventListener("click", clearAll);
-      loadDraft();
-    })();
-  </script>
 </body>
 </html>
