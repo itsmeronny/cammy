@@ -3,8 +3,190 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CamCleans | Professional Nationwide Cleaning</title>
+  <title>CamCleans | Nationwide Cleaning, Professionally Managed</title>
+  <meta name="description" content="Premium cleaning services delivered nationwide across the UK. Clear scope. Controlled quality. Structured standards." />
   <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    :root{
+      --panel: rgba(255,255,255,0.06);
+      --panel2: rgba(255,255,255,0.04);
+      --stroke: rgba(255,255,255,0.12);
+      --muted: rgba(230,240,255,0.75);
+      --muted2: rgba(230,240,255,0.6);
+      --shadow: 0 24px 80px rgba(0,0,0,0.55);
+      --radius: 18px;
+    }
+
+    body{
+      min-height: 100vh;
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(60,120,255,0.22), transparent 55%),
+        radial-gradient(900px 700px at 82% 26%, rgba(120,70,255,0.18), transparent 55%),
+        radial-gradient(1100px 700px at 50% 92%, rgba(40,220,255,0.12), transparent 55%),
+        #0b0f19;
+    }
+
+    .wrap{
+      width: 92%;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* HERO */
+
+    .hero-elite{
+      padding: 120px 0 80px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items:center;
+    }
+
+    @media (max-width:900px){
+      .hero-grid{ grid-template-columns:1fr; }
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.14);
+      background:rgba(255,255,255,0.06);
+      color:rgba(230,240,255,0.92);
+      font-size:13px;
+      margin-bottom:16px;
+    }
+
+    .badge .dot{
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:rgba(40,220,255,0.95);
+      box-shadow:0 0 18px rgba(40,220,255,0.35);
+    }
+
+    /* CHANGE #1: centre the hero block, keep text left */
+    .hero-left{
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .hero-left h1{
+      font-size:clamp(36px,5vw,54px);
+      line-height:1.05;
+      letter-spacing:-0.6px;
+      margin:0 0 18px;
+    }
+
+    .hero-left h1 span{
+      color:#7aa2ff;
+    }
+
+    .lead{
+      color:var(--muted);
+      font-size:18px;
+      max-width:52ch;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      margin-top:26px;
+      flex-wrap:wrap;
+    }
+
+    .panel{
+      border-radius:var(--radius);
+      border:1px solid var(--stroke);
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .panel-header{
+      padding:22px;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(700px 220px at 20% 0%, rgba(60,120,255,0.22), transparent 55%),
+        radial-gradient(600px 220px at 80% 0%, rgba(120,70,255,0.16), transparent 55%);
+    }
+
+    .panel-header h2{
+      margin:0 0 6px;
+      font-size:20px;
+    }
+
+    .panel-body{
+      padding:22px;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .chip{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.12);
+      background:rgba(255,255,255,0.05);
+      font-size:13px;
+      color:rgba(230,240,255,0.88);
+    }
+
+    /* SERVICES */
+
+    .services-elite{
+      padding:60px 0 100px;
+    }
+
+    /* CHANGE #2: centre Core Services heading */
+    .section-title{
+      font-size:28px;
+      letter-spacing:-0.3px;
+      margin-bottom:32px;
+      text-align:center;
+    }
+
+    .grid-cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:18px;
+    }
+
+    .card{
+      padding:18px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.04);
+    }
+
+    .card h3{
+      margin:0 0 8px;
+      font-size:18px;
+    }
+
+    .card p{
+      color:var(--muted2);
+      font-size:14px;
+      margin:0 0 10px;
+    }
+
+    .card a{
+      color:#7aa2ff;
+      text-decoration:none;
+      font-size:14px;
+    }
+
+  </style>
 </head>
 
 <body>
@@ -12,8 +194,8 @@
 <header class="navbar">
   <div class="container nav-inner">
     <div class="logo">
-  <img src="/camcleans-wordmark.svg" alt="CamCleans">
-</div>
+      <img src="/camcleans-wordmark.svg" alt="CamCleans">
+    </div>
 
     <nav class="nav-links">
       <a href="/">Home</a>
@@ -27,108 +209,223 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="container hero-inner">
-    <div class="hero-text">
-      <span class="badge">Nationwide Cleaning Services</span>
+<section class="hero-elite">
+  <div class="wrap">
+    <div class="hero-grid" style="grid-template-columns:1fr;">
 
-      <h1>
-        Professional Cleaning
-        <span>Made Nationwide.</span>
-      </h1>
+      <div class="hero-left">
+        <div class="badge">
+          <span class="dot"></span>
+          Professionally Managed • Nationwide UK
+        </div>
 
-      <p>
-        From end of tenancy cleans to regular domestic services.
-        Trusted cleaners operating across all major UK cities.
-      </p>
+        <h1>
+          One Standard.<br>
+          <span>Every City.</span>
+        </h1>
 
-      <div class="hero-buttons">
-        <a href="/contact.html" class="btn-primary">Instant Quote</a>
-        <a href="#services" class="btn-secondary">View Services</a>
+        <p class="lead">
+          Premium cleaning services delivered nationwide.
+          Clear scope. Controlled quality. No ambiguity.
+        </p>
+
       </div>
 
-      <div class="hero-trust">
-        <span>Fully Insured</span>
-        <span>Vetted Cleaners</span>
-        <span>7 Days a Week</span>
-      </div>
     </div>
-
-    <div class="hero-card"></div>
   </div>
 </section>
 
-<section class="stats container">
-  <div>
-    <h3>4.9/5</h3>
-    <p>Rated Nationwide</p>
-  </div>
-  <div>
-    <h3>50K+</h3>
-    <p>Cleans Completed</p>
-  </div>
-  <div>
-    <h3>100%</h3>
-    <p>Satisfaction Guarantee</p>
-  </div>
-</section>
+<section class="services-elite" id="services">
+  <div class="wrap">
+    <h2 class="section-title">Core Services</h2>
 
-<section class="services" id="services">
-  <div class="container">
-    <h2>Our Cleaning Services</h2>
-
-    <div class="service-grid">
+    <div class="grid-cards">
 
       <div class="card">
-        <h3>End of Tenancy Cleaning</h3>
-        <p>Deposit-back guarantee cleaning across major cities.</p>
+        <h3>End of Tenancy</h3>
+        <p>Deposit-aligned cleaning with defined scope control.</p>
         <a href="/services/end-of-tenancy.html">View Details</a>
       </div>
 
       <div class="card">
-        <h3>After Builders Cleaning</h3>
-        <p>Heavy-duty dust removal and post-renovation deep cleans.</p>
+        <h3>Deep Cleans</h3>
+        <p>Reset-level cleaning for neglected or high-demand properties.</p>
+        <a href="/services/deep-clean.html">View Details</a>
+      </div>
+
+      <div class="card">
+        <h3>Regular Domestic</h3>
+        <p>Structured recurring cleans with controlled standards.</p>
+        <a href="/services/regular-cleaning.html">View Details</a>
+      </div>
+
+      <div class="card">
+        <h3>After Builders</h3>
+        <p>Fine dust removal and post-renovation reset cleans.</p>
         <a href="/services/after-builders.html">View Details</a>
       </div>
 
       <div class="card">
         <h3>Office Cleaning</h3>
-        <p>Professional commercial cleaning contracts nationwide.</p>
+        <p>Commercial cleaning with defined reporting standards.</p>
         <a href="/services/office-cleaning.html">View Details</a>
       </div>
 
       <div class="card">
-        <h3>One-Off Deep Clean</h3>
-        <p>Intensive top-to-bottom cleaning for any property.</p>
-        <a href="/services/deep-clean.html">View Details</a>
-      </div>
-
-      <div class="card">
         <h3>Carpet Cleaning</h3>
-        <p>Machine extraction and stain removal specialists.</p>
+        <p>Extraction cleaning and stain-focused restoration.</p>
         <a href="/services/carpet-cleaning.html">View Details</a>
-      </div>
-
-      <div class="card">
-        <h3>Regular Domestic Cleaning</h3>
-        <p>Weekly or fortnightly scheduled cleans.</p>
-        <a href="/services/regular-cleaning.html">View Details</a>
       </div>
 
     </div>
   </div>
 </section>
 
-<section class="cta">
-  <div class="container">
-    <h2>Ready for a spotless home?</h2>
-    <p>Join thousands of customers across major cities who trust CamCleans.</p>
+<section style="
+  position:relative;
+  padding:80px 20px;
+  background:linear-gradient(135deg,#0b0f19,#111827,#0b0f19);
+  background-size:400% 400%;
+  animation:gradientShift 18s ease infinite;
+  border-top:1px solid rgba(255,215,0,0.15);
+">
 
-    <div class="cta-buttons">
-      <a href="/contact.html" class="btn-primary">Book Your Clean Now</a>
-      <a href="/contact.html" class="btn-secondary light">Contact Our Team</a>
+<style>
+@keyframes gradientShift {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+.trust-grid {
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:28px;
+}
+.trust-card {
+  flex:1 1 240px;
+  min-width:240px;
+  padding:30px 25px;
+  border-radius:14px;
+  border:1px solid rgba(255,215,0,0.35);
+  background:rgba(255,255,255,0.02);
+  text-align:center;
+  transition:all 0.35s ease;
+}
+.trust-card:hover {
+  transform:translateY(-6px);
+  box-shadow:0 0 25px rgba(255,215,0,0.35);
+  border:1px solid rgba(255,215,0,0.8);
+}
+.trust-icon {
+  width:36px;
+  height:36px;
+  margin-bottom:15px;
+  stroke:#ffd700;
+}
+.trust-title {
+  color:#ffd700;
+  font-size:17px;
+  margin-bottom:12px;
+  letter-spacing:0.4px;
+}
+.trust-text {
+  color:#cbd5ff;
+  font-size:14px;
+  line-height:1.5;
+}
+</style>
+
+<div style="max-width:1200px;margin:0 auto;text-align:center;margin-bottom:50px;">
+  <h2 style="color:#ffffff;font-size:30px;letter-spacing:1px;">
+    National Trust Standards
+  </h2>
+</div>
+
+<div class="trust-grid">
+
+  <!-- Fully Insured -->
+  <div class="trust-card">
+    <svg class="trust-icon" fill="none" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/>
+    </svg>
+    <div class="trust-title">Fully Insured</div>
+    <div class="trust-text">
+      Public Liability Cover<br>
+      Up to £5,000,000
     </div>
   </div>
+
+  <!-- Secure Payments -->
+  <div class="trust-card">
+    <svg class="trust-icon" fill="none" stroke-width="2" viewBox="0 0 24 24">
+      <rect x="3" y="7" width="18" height="13" rx="2"/>
+      <path d="M3 11h18"/>
+    </svg>
+    <div class="trust-title">Secure Payments</div>
+    <div class="trust-text">
+      Encrypted Stripe Checkout<br>
+      Deposit Protected
+    </div>
+  </div>
+
+  <!-- CamCleans Standard -->
+  <div class="trust-card">
+    <svg class="trust-icon" fill="none" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M9 12l2 2 4-4"/>
+      <circle cx="12" cy="12" r="9"/>
+    </svg>
+    <div class="trust-title">CamCleans Standard™</div>
+    <div class="trust-text">
+      Structured Cleaning Scope<br>
+      Before & After Photo Logs<br>
+      Fixed Transparent Pricing
+    </div>
+  </div>
+
+  <!-- Vetting -->
+  <div class="trust-card">
+    <svg class="trust-icon" fill="none" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M12 11c2 0 3-1.5 3-3s-1-3-3-3-3 1.5-3 3 1 3 3 3z"/>
+      <path d="M5 21c0-4 3-6 7-6s7 2 7 6"/>
+    </svg>
+    <div class="trust-title">SecureMatch™ Vetting</div>
+    <div class="trust-text">
+      ID Verified<br>
+      Insurance Confirmed<br>
+      Performance Rated 4.7★+
+    </div>
+  </div>
+
+  <!-- Guarantee -->
+  <div class="trust-card">
+    <svg class="trust-icon" fill="none" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M20 6L9 17l-5-5"/>
+    </svg>
+    <div class="trust-title">Satisfaction Guarantee</div>
+    <div class="trust-text">
+      Issues Reported Within 48 Hours<br>
+      Resolved Promptly
+    </div>
+  </div>
+
+  <!-- Nationwide -->
+  <div class="trust-card">
+    <svg class="trust-icon" fill="none" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M2 12h20M12 2c3 3 3 17 0 20"/>
+    </svg>
+    <div class="trust-title">Nationwide Coverage</div>
+    <div class="trust-text">
+      UK Service Network<br>
+      Structured Allocation System
+    </div>
+  </div>
+
+</div>
+
 </section>
 
 <footer>
